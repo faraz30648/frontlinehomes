@@ -1234,8 +1234,8 @@
         setInterval(rotateHeroBg, 6000);
 
 // --- Google Sheets Logic ---
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbxnhAGUIHRU5CZcMsX5ifinrkkWIxd9RyHujPCm9XAjjLtD_z3dE-my6HPTvGnWXLCeUg/exec";
-
+const SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbxnhAGUIHRU5CZcMsX5ifinrkkWIxd9RyHujPCm9XAjjLtD_z3dE-my6HPTvGnWXLCeUg/exec";
         
         let properties = [];
         
@@ -1369,22 +1369,20 @@ grid.innerHTML =
   "<p style='font-size:13px;color:var(--muted);'>Loading curated properties...</p>";
 
 fetch(SHEET_URL)
-  .then(res => res.json())
-  .then(data => {
-    console.log("RAW DATA:", data);
-
-    if (!Array.isArray(data) || data.length === 0) {
-      grid.innerHTML =
-        "<p style='font-size:13px;color:#9ca3af;'>Sheet connected, but no property data returned yet.</p>";
-      return;
-    }
-
+  .then(res => {
+    console.log("✅ RESPONSE STATUS:", res.status);
+    console.log("✅ RESPONSE TYPE:", res.headers.get("content-type"));
+    return res.text();
+  })
+  .then(text => {
+    console.log("✅ RAW RESPONSE TEXT:", text);
+    const data = JSON.parse(text);
     properties = data;
     initFiltersAndCounts();
     render(3);
   })
   .catch(err => {
-    console.error(err);
+    console.error("❌ FETCH FAILED:", err);
     grid.innerHTML =
       "<p style='font-size:13px;color:#9ca3af;'>Could not load properties.</p>";
   });
