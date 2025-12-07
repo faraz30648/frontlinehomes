@@ -1677,6 +1677,7 @@
     const typeF = document.getElementById("type");
     const locF = document.getElementById("locality");
     const confF = document.getElementById("config");
+    const builderF = document.getElementById("builder");
     const heroPropertyCountEl = document.getElementById("heroPropertyCount");
 
     function fillSelect(sel, key, label) {
@@ -1690,6 +1691,8 @@
       fillSelect(typeF, "Type", "types");
       fillSelect(locF, "Locality", "localities");
       fillSelect(confF, "Configuration", "configurations");
+      fillSelect(builderF, "Builder", "builders");
+
 
       heroPropertyCountEl.textContent = `${properties.length || 0} curated properties`;
     }
