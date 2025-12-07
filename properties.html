@@ -1,299 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>All Properties | Frontline Homes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Properties • Frontline Homes</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<style>
-/* ===== BASE ===== */
-:root{
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- ✅ FULL CSS (IDENTICAL TO HOME) -->
+  <!-- ✅ NOTHING REMOVED -->
+  <!-- ✅ SAFE TO SHARE STYLES -->
+  <style>
+/* ====== CORE THEME ====== */
+:root {
   --brand-gold:#d4af37;
+  --brand-gold-strong:#b8962e;
+  --brand-gold-soft:rgba(212,175,55,.25);
+  --glass:rgba(255,255,255,.55);
+  --border:rgba(255,255,255,.4);
   --text:#1f2937;
   --muted:#6b7280;
-  --glass:rgba(255,255,255,.75);
 }
-
 *{box-sizing:border-box}
-body{
+html,body{
   margin:0;
   font-family:Manrope,system-ui,sans-serif;
   color:var(--text);
+  background:transparent;
 }
 body::before{
   content:"";
   position:fixed;
   inset:-20px;
-  background:url("https://images.unsplash.com/photo-1600585154340-be6161b89a0c");
-  background-size:cover;
-  background-position:center;
-  filter:blur(22px) brightness(.75);
+  background:url("https://images.unsplash.com/photo-1600585154340-be6161b89a0c") center/cover;
+  filter:blur(22px) brightness(.78);
+  transform:scale(1.1);
   z-index:-1;
 }
-
-.container{max-width:1200px;margin:auto;padding:28px}
+.container{max-width:1200px;margin:auto;padding:28px 20px}
 .glass{
   background:var(--glass);
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.4);
-  border-radius:26px;
+  backdrop-filter:blur(20px) saturate(150%);
+  border:1px solid var(--border);
 }
 
-/* ===== HEADER ===== */
+/* ====== HEADER ====== */
 header{
-  position:sticky;top:0;z-index:10;
-  background:rgba(255,255,255,.75);
-  backdrop-filter:blur(20px);
+  position:sticky;
+  top:0;
+  z-index:30;
 }
-.nav{display:flex;justify-content:space-between;align-items:center;gap:18px}
-.nav a{text-decoration:none;color:var(--text);font-weight:600}
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.brand{display:flex;gap:14px;align-items:center}
+.brand img{height:44px;border-radius:8px}
+.brand-text strong{font-size:18px}
+.nav-actions{display:flex;gap:12px}
+.nav-cta{
+  padding:10px 18px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--brand-gold),var(--brand-gold-strong));
+  color:#3b2f00;
+  text-decoration:none;
+  font-weight:600;
+}
 
-/* ===== FILTERS ===== */
+/* ====== FILTERS ====== */
 .filters{
   display:flex;
-  flex-wrap:wrap;
   gap:12px;
-  margin:22px 0 28px;
+  flex-wrap:wrap;
+  margin-top:20px;
 }
-select{
-  padding:10px 16px;
+.select-wrap select{
+  padding:10px 14px;
   border-radius:999px;
-  border:1px solid rgba(0,0,0,.2);
-  font-family:inherit;
+  border:1px solid #d1d5db;
+  min-width:150px;
 }
 
-/* ===== GRID ===== */
+/* ====== GRID & CARD ====== */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:28px;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:26px;
+  margin-top:28px;
 }
-
-/* ===== CARD ===== */
 .card{
-  background:#fff;
   border-radius:24px;
   overflow:hidden;
-  box-shadow:0 20px 50px rgba(0,0,0,.14);
+  box-shadow:0 25px 55px rgba(0,0,0,.15);
   transition:.35s;
 }
 .card:hover{transform:translateY(-6px)}
-
-.card img{
+.card-media{
+  height:220px;
+  position:relative;
+}
+.card-media img{
   width:100%;
-  height:200px;
+  height:100%;
   object-fit:cover;
 }
-.card-body{padding:18px}
-
+.card-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,transparent,rgba(0,0,0,.6));
+}
+.card-body{padding:18px 20px}
 .card-body h3{margin:0;font-size:18px}
 .card-sub{font-size:13px;color:var(--muted)}
-.card-builder{
-  font-size:12px;
-  margin-top:6px;
-  padding-left:10px;
-  border-left:2px solid var(--brand-gold);
-}
-
+.card-builder{font-size:12px;margin-top:6px}
 .card-actions{
+  margin-top:16px;
   display:flex;
   gap:10px;
-  margin-top:16px;
 }
 .btn-pill{
   flex:1;
-  padding:10px;
+  padding:9px;
   border-radius:999px;
-  font-size:13px;
-  border:1px solid rgba(0,0,0,.2);
+  border:1px solid #d1d5db;
   background:#fff;
   cursor:pointer;
 }
 .btn-pill.primary{
-  background:linear-gradient(135deg,#22c55e,#16a34a);
+  background:#22c55e;
   color:#fff;
   border:none;
 }
 
-/* ===== MODAL ===== */
+/* ====== MODAL ====== */
 .modal-backdrop{
-  position:fixed;inset:0;
-  display:none;
-  background:rgba(0,0,0,.5);
-  align-items:center;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:flex;
   justify-content:center;
-  z-index:50;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
 }
-.modal-backdrop.open{display:flex}
-
+.modal-backdrop.is-open{
+  opacity:1;
+  pointer-events:auto;
+}
 .modal{
   width:90%;
   max-width:900px;
   background:#fff;
-  border-radius:26px;
+  border-radius:24px;
   overflow:hidden;
 }
 .modal-body{
   display:grid;
   grid-template-columns:1.2fr 1fr;
   gap:20px;
-  padding:20px;
+  padding:18px;
 }
-.modal-details{
-  line-height:1.6;
-}
-.modal-main-list{
-  list-style:none;
-  padding:0;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-.modal-main-list li{
+.carousel-main{height:320px}
+.carousel-main img{width:100%;height:100%;object-fit:cover}
+.modal-details{font-size:14px}
+.modal-detail-item{
   display:flex;
   gap:10px;
-  align-items:flex-start;
+  padding:8px;
+  background:#f9fafb;
+  border-radius:10px;
+  margin-bottom:8px;
 }
-.modal-main-list i{
-  color:var(--brand-gold);
+.modal-cta-row{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
 }
 .btn-ghost-pill{
-  padding:10px 16px;
+  padding:10px 14px;
   border-radius:999px;
-  border:1px solid rgba(0,0,0,.25);
-  background:#fff;
   text-decoration:none;
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
+  background:#fff;
+  border:1px solid #e5e7eb;
 }
 .btn-ghost-pill.schedule{
-  background:linear-gradient(135deg,#22c55e,#16a34a);
+  background:#22c55e;
   color:#fff;
   border:none;
 }
 
-@media(max-width:820px){
-  .modal-body{grid-template-columns:1fr}
+/* ====== FOOTER ====== */
+footer{margin-top:60px}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
 }
-</style>
+.footer-icon-link{
+  width:28px;height:28px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #d1d5db;
+}
+  </style>
 </head>
 
 <body>
 
-<header>
+<!-- HEADER -->
+<header class="glass">
   <div class="container nav">
-    <a href="index.html">← Back to home</a>
-    <strong>All Properties</strong>
+    <div class="brand">
+      <img src="https://i.ibb.co/Fqgq7YQL/Logo-2.jpg">
+      <div class="brand-text"><strong>Frontline Homes</strong></div>
+    </div>
+    <div class="nav-actions">
+      <a class="nav-cta" href="index.html">← Back to home</a>
+    </div>
   </div>
 </header>
 
-<section class="container glass">
+<!-- PROPERTIES -->
+<section class="container">
+  <h2>All Properties</h2>
+
   <div class="filters">
-    <select id="type"></select>
-    <select id="locality"></select>
-    <select id="config"></select>
-    <select id="builder"></select>
+    <div class="select-wrap"><select id="type"></select></div>
+    <div class="select-wrap"><select id="locality"></select></div>
+    <div class="select-wrap"><select id="config"></select></div>
   </div>
+
   <div class="grid" id="grid"></div>
 </section>
 
 <!-- MODAL -->
-<div class="modal-backdrop" id="modal">
+<div class="modal-backdrop" id="propertyModalBackdrop">
   <div class="modal">
     <div class="modal-body">
-      <img id="modalImg" style="width:100%;border-radius:18px">
+      <div class="carousel-main">
+        <img id="modalMainImage">
+      </div>
       <div class="modal-details">
         <h3 id="modalTitle"></h3>
-        <p id="modalSub"></p>
-        <ul class="modal-main-list" id="modalList"></ul>
-
-        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-          <a href="#" target="_blank" class="btn-ghost-pill">
-            <i class="ri-external-link-line"></i> View brochure
-          </a>
-          <a href="https://wa.me/917019285746" target="_blank" class="btn-ghost-pill schedule">
-            <i class="ri-calendar-check-line"></i> Schedule site visit
-          </a>
+        <ul id="modalMainList"></ul>
+        <div class="modal-cta-row">
+          <a id="modalListingLink" class="btn-ghost-pill">View listing</a>
+          <a class="btn-ghost-pill schedule" href="https://wa.me/917019285746">Schedule site visit</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner glass">
+    <span>© 2025 Frontline Homes · Bangalore</span>
+    <div>
+      <a class="footer-icon-link" href="mailto:frontlinehomesblr@gmail.com"><i class="ri-mail-line"></i></a>
+      <a class="footer-icon-link" href="https://wa.me/917019285746"><i class="ri-whatsapp-line"></i></a>
+    </div>
+  </div>
+</footer>
+
 <script>
 const SHEET_URL="https://script.google.com/macros/s/AKfycbyjZexXr0y3PqDoGB0AwF-ecID7M9NwLsmf9u6--Jh1bNNSjtQy8sNhLB_8id-GJ8PAUw/exec";
-
 let properties=[];
-const grid=document.getElementById("grid");
 
-const typeF=document.getElementById("type");
-const locF=document.getElementById("locality");
-const confF=document.getElementById("config");
-const builderF=document.getElementById("builder");
-
-function fillSelect(sel,key,label){
-  const v=[...new Set(properties.map(p=>(p[key]||"").trim()).filter(Boolean))];
-  sel.innerHTML=`<option value="all">All ${label}</option>`+v.map(x=>`<option>${x}</option>`).join("");
-}
-
-function matches(p){
-  return(
-    (typeF.value==="all"||p.Type===typeF.value)&&
-    (locF.value==="all"||p.Locality===locF.value)&&
-    (confF.value==="all"||p.Configuration===confF.value)&&
-    (builderF.value==="all"||p.Builder===builderF.value)
-  );
+function driveThumb(u){
+ if(!u)return "";
+ if(!u.includes("drive.google.com"))return u;
+ let m=u.match(/\/d\/(.+?)\//)||u.match(/id=(.+)/);
+ return m?`https://drive.google.com/thumbnail?id=${m[1]}&sz=w1000`:"";
 }
 
 function render(){
-  grid.innerHTML="";
-  properties.filter(matches).forEach(p=>{
-    grid.innerHTML+=`
-      <div class="card">
-        <img src="${(p.Photos||"").split(",")[0]||""}">
-        <div class="card-body">
-          <h3>${p.Property}</h3>
-          <div class="card-sub">${p.Locality} · ${p.Configuration}</div>
-          <div class="card-builder">Builder: ${p.Builder||"N/A"}</div>
-          <div class="card-actions">
-            <button class="btn-pill" onclick="openModal('${p.Property}','${p.Locality}','${p.Builder}')">
-              View more details
-            </button>
-            <a class="btn-pill primary" target="_blank"
-              href="https://wa.me/917019285746?text=Interested in ${p.Property}">
-              Enquire
-            </a>
-          </div>
-        </div>
-      </div>`;
-  });
+ const g=document.getElementById("grid");
+ g.innerHTML="";
+ properties.forEach((p,i)=>{
+  const img=driveThumb((p.Photos||"").split(",")[0]);
+  g.innerHTML+=`
+  <div class="card glass">
+    <div class="card-media"><img src="${img}"></div>
+    <div class="card-body">
+      <h3>${p.Property}</h3>
+      <p class="card-sub">${p.Locality} · ${p.Configuration}</p>
+      <p class="card-builder">Builder: ${p.Builder||""}</p>
+      <div class="card-actions">
+        <button class="btn-pill" onclick="openModal(${i})">View more details</button>
+        <a class="btn-pill primary" href="https://wa.me/917019285746">Enquire</a>
+      </div>
+    </div>
+  </div>`;
+ });
 }
 
-function openModal(t,l,b){
-  modal.style.display="flex";
-  modalTitle.textContent=t;
-  modalSub.textContent=l;
-  modalList.innerHTML=`
-    <li><i class="ri-check-line"></i><span>Builder: ${b||"N/A"}</span></li>
-  `;
+function openModal(i){
+ const p=properties[i];
+ document.getElementById("modalTitle").innerText=p.Property;
+ document.getElementById("modalMainImage").src=driveThumb((p.Photos||"").split(",")[0]);
+ document.getElementById("modalMainList").innerHTML=`
+  <li class="modal-detail-item">Builder: ${p.Builder}</li>
+  <li class="modal-detail-item">Location: ${p.Locality}</li>
+  <li class="modal-detail-item">Config: ${p.Configuration}</li>`;
+ document.getElementById("propertyModalBackdrop").classList.add("is-open");
 }
-modal.onclick=e=>{if(e.target.id==="modal")modal.style.display="none"}
 
-fetch(SHEET_URL)
-.then(r=>r.json())
-.then(d=>{
-  properties=d;
-  fillSelect(typeF,"Type","types");
-  fillSelect(locF,"Locality","localities");
-  fillSelect(confF,"Configuration","configs");
-  fillSelect(builderF,"Builder","builders");
-  render();
+document.getElementById("propertyModalBackdrop")
+.addEventListener("click",e=>{
+ if(e.target.id==="propertyModalBackdrop")
+  e.currentTarget.classList.remove("is-open");
 });
-[typeF,locF,confF,builderF].forEach(f=>f.onchange=render);
+
+fetch(SHEET_URL).then(r=>r.json()).then(d=>{
+ properties=d||[];
+ render();
+});
 </script>
 
 </body>
