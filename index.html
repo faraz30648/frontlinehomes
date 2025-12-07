@@ -1296,6 +1296,63 @@ section,
   color: #3b2f00 !important;
 }
 
+/* ===============================
+   ICON-BASED MAIN DETAILS
+   =============================== */
+
+.modal-main-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.modal-detail-item i {
+  font-size: 16px;
+  color: var(--brand-gold);
+  margin-top: 2px;
+}
+/* ===============================
+   MODAL PILL BUTTON HOVER
+   =============================== */
+
+.modal .btn-ghost-pill {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.modal .btn-ghost-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.15);
+}
+
+/* Special emphasis for schedule CTA */
+.btn-ghost-pill.schedule {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  font-weight: 600;
+  border-color: transparent;
+}
+
+.btn-ghost-pill.schedule:hover {
+  box-shadow: 0 14px 36px rgba(34,197,94,0.45);
+}
+
 
   </style>
 </head>
@@ -1611,6 +1668,13 @@ section,
                 <i class="ri-whatsapp-line"></i> 
                 Share this property on WhatsApp 
               </a> 
+              <a href="https://wa.me/917019285746?text=Hi%2C%20I’d%20like%20to%20schedule%20a%20site%20visit" 
+   target="_blank"
+   class="btn-ghost-pill schedule">
+  <i class="ri-calendar-check-line"></i>
+  Schedule site visit
+</a>
+
             </div> 
           </div> 
         </div> 
@@ -1803,7 +1867,9 @@ section,
       viewAllContainer.style.display = limit && filtered.length > limit ? "block" : "none";
     }
  
-    document.getElementById("viewAllBtn").addEventListener("click", () => render(null));
+    document.getElementById("viewAllBtn").addEventListener("click", () => {
+  window.location.href = "properties.html";
+});
  
     typeF.addEventListener("change", () => render(3)); 
     locF.addEventListener("change", () => render(3)); 
@@ -1887,7 +1953,13 @@ section,
   if (p.Configuration) bullets.push(`Configuration: ${p.Configuration}`); 
   if (p.Locality) bullets.push(`Locality: ${p.Locality}`); 
   if (p.Status) bullets.push(`Status: ${p.Status}`); 
-  modalMainListEl.innerHTML = bullets.map(b => `<li>${b}</li>`).join(""); 
+  modalMainListEl.innerHTML = bullets.map(b => `
+  <li class="modal-detail-item">
+    <i class="ri-checkbox-circle-line"></i>
+    <span>${b}</span>
+  </li>
+`).join("");
+
  
   const imgs = parsePhotoArray(p.Photos); 
   buildCarousel(imgs); 
