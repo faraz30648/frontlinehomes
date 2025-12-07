@@ -743,26 +743,39 @@ button.btn-primary {
     }
  
     .modal-carousel {
-      background: #020617;
       border-radius: 20px;
-      border: 1px solid rgba(31, 41, 55, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.15);
       overflow: hidden;
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 420px; 
+      background: transparent;
     }
+
  
     .carousel-main {
       position: relative;
-      width: 100%;
-      height: 320px;
-      background: #020617;
+      flex: 1 1 auto;
+      min-height: 0;      
+      background: #000;
     }
+
  
     .carousel-main img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-    }
+}
+
+
+.carousel-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
  
     .carousel-nav-btn {
       position: absolute;
@@ -812,19 +825,21 @@ button.btn-primary {
     }
  
     .carousel-dot.active {
-  background: var(--brand-gold);
-}
+      background: var(--brand-gold);
+    }
  
  
     .carousel-strip {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 70px;
+      min-height: 78px;
+      background: #ffffff;
+      padding: 10px;
+      display: flex;
       gap: 8px;
-      padding: 8px;
       overflow-x: auto;
-      background: rgba(255, 255, 255, 0.96);
+      border-top: 1px solid #e5e7eb;
+      flex-shrink: 0;          
     }
+
  
     .carousel-thumb {
       width: 70px;
@@ -1915,7 +1930,9 @@ section,
       ]; 
  
       carouselDotsEl.innerHTML = ""; 
-      carouselStripEl.innerHTML = ""; 
+      carouselStripEl.innerHTML = "";
+      carouselStripEl.style.display = photos.length > 1 ? "flex" : "none";
+ 
  
       currentPhotoArray.forEach((url, idx) => { 
         const dot = document.createElement("button"); 
