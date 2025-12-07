@@ -1680,12 +1680,34 @@
     const builderF = document.getElementById("builder");
     const heroPropertyCountEl = document.getElementById("heroPropertyCount");
 
-    function fillSelect(sel, key, label) {
-      const values = [...new Set(properties.map(p => (p[key] || "").trim()).filter(Boolean))];
-      sel.innerHTML =
-        `<option value="all">All ${label}</option>` +
-        values.map(v => `<option value="${v}">${v}</option>`).join("");
+    function normalize(value) {
+  return (value || "")
+    .toString()
+    .trim()
+    .toLowerCase();
+}
+
+function fillSelect(sel, key, label) {
+  const rawValues = properties
+    .map(p => p[key])
+    .filter(Boolean);
+
+  const map = new Map();
+
+  rawValues.forEach(v => {
+    const norm = normalize(v);
+    if (!map.has(norm)) {
+      map.set(norm, v); // keep original casing
     }
+  });
+
+  sel.innerHTML =
+    `<option value="all">All ${label}</option>` +
+    [...map.entries()]
+      .map(([norm, original]) => `<option value="${norm}">${original}</option>`)
+      .join("");
+}
+
 
     function initFiltersAndCounts() {
       fillSelect(typeF, "Type", "types");
@@ -1697,20 +1719,26 @@
       heroPropertyCountEl.textContent = `${properties.length || 0} curated properties`;
     }
 
-    function matchesFilters(p) {
-      return (
-        (typeF.value === "all" || p.Type === typeF.value) &&
-        (locF.value === "all" || p.Locality === locF.value) &&
-        (confF.value === "all" || p.Configuration === confF.value) &&
-        (confF.value === "all" || p.Builder === confF.value)
-      );
-    }
+    function normalize(v) {
+  return (v || "").toString().trim().toLowerCase();
+}
+
+function matchesFilters(p) {
+  return (
+    (typeF.value === "all" || normalize(p.Type) === typeF.value) &&
+    (locF.value === "all" || normalize(p.Locality) === locF.value) &&
+    (confF.value === "all" || normalize(p.Configuration) === confF.value) &&
+    (builderF.value === "all" || normalize(p.Builder) === builderF.value)
+  );
+}
 
     // Render cards
     function render(limit) {
       const viewAllContainer = document.getElementById("viewAllContainer");
       const filtered = properties.filter(matchesFilters);
 
+      console.log("Filtered:", filtered.length);
+      
       grid.innerHTML = "";
 
       if (!filtered.length) {
