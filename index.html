@@ -1237,58 +1237,158 @@
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbxnhAGUIHRU5CZcMsX5ifinrkkWIxd9RyHujPCm9XAjjLtD_z3dE-my6HPTvGnWXLCeUg/exec";
 
         
-        let properties = []; // Convert Google Drive links or direct image URLs to usable thumbnail URLs function driveThumb(url) { if (!url) return ""; url = url.trim(); if (!url.includes("drive.google.com")) { return url; } let idMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/); const id = idMatch ? idMatch[1] : null; if (!id) { return "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688"; // Fallback image } return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`; } // Parse the "Photos" cell: supports multiple links separated by comma or newline  
+        let properties = [];
+        
+        const grid = document.getElementById("grid"); 
+        const typeF = document.getElementById("type"); 
+        const locF = document.getElementById("locality"); 
+        const confF = document.getElementById("config"); 
+        const heroPropertyCountEl = document.getElementById("heroPropertyCount"); 
+
+
+// Convert Google Drive links or direct image URLs to usable thumbnails
+function driveThumb(url) {
+    if (!url) return "";
+    url = url.trim();
+
+    if (!url.includes("drive.google.com")) {
+        return url;
+    }
+
+    const idMatch =
+        url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) ||
+        url.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
+        url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+
+    const id = idMatch ? idMatch[1] : null;
+
+    if (!id) {
+        return "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688";
+    }
+
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+}
+
         
         // Parse the "Photos" cell: supports multiple links separated by comma or newline
 // Function to process the image URL string
 function parsePhotoArray(photosField) {
     if (!photosField) return [];
-    
-    // The Apps Script already returned direct, usable image URLs (uc?id=...). 
-    // We only need to split the string and filter out empty entries.
+
     return photosField
         .split(",")
-        .map(s => s.trim())
-        .filter(s => s.length > 0);
-} // <--- The function is now correctly closed here.
+        .map(s => driveThumb(s.trim()))
+        .filter(Boolean);
+}
+
 
 
 // Global variable definitions (These must be outside the function!)
-const grid = document.getElementById("grid"); 
-const typeF = document.getElementById("type"); 
-const locF = document.getElementById("locality"); 
-const confF = document.getElementById("config"); 
-const heroPropertyCountEl = document.getElementById("heroPropertyCount"); 
 
 function fillSelect(sel, key, label) { 
     const values = [...new Set(properties.map(p => (p[key] || "").trim()).filter(Boolean))]; 
     sel.innerHTML = `<option value="all">All ${label}</option>` + values.map(v => `<option value="${v}">${v}</option>`).join(""); 
 }
         
-        function initFiltersAndCounts() { fillSelect(typeF, "Type", "types"); fillSelect(locF, "Locality", "localities"); fillSelect(confF, "Configuration", "configurations"); heroPropertyCountEl.textContent = `${properties.length || 0} curated properties`; } function matchesFilters(p) { return ( (typeF.value === "all" || p.Type === typeF.value) && (locF.value === "all" || p.Locality === locF.value) && (confF.value === "all" || p.Configuration === confF.value) ); } // Render cards function render(limit) { const viewAllContainer = document.getElementById("viewAllContainer"); const filtered = properties.filter(matchesFilters); grid.innerHTML = ""; if (!filtered.length) { grid.innerHTML = "<p style='font-size:13px;color:var(--muted);'>No matching properties found.</p>"; viewAllContainer.style.display = "none"; return; } const toShow = limit ? filtered.slice(0, limit) : filtered; toShow.forEach(p => { const photos = parsePhotoArray(p.Photos); const cover = photos.length > 0 ? photos[0] : "https://images.unsplash.com/photo-1502673530728-f79b4cab31b1"; const propertyIndex = properties.indexOf(p); grid.innerHTML += `<div class="card glass"> <div class="card-media"> <img src="${cover}" alt="Property image for ${p.Property}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1502672260266-1c1ef2d93688';" > </div> <div class="card-body"> <h3>${p.Property}</h3> <p class="card-sub">${p.Locality} · ${p.Configuration}</p> <p class="card-builder">Builder: ${p.Builder || 'N/A'}</p> <div class="card-actions"> <button type="button" class="btn-pill" onclick="openPropertyModal(${propertyIndex})"> <i class="ri-gallery-line"></i> View Photos </button> <a href="https://wa.me/917019285746?text=Hi, I'm interested in ${p.Property}" target="_blank" class="btn-pill primary"> <i class="ri-whatsapp-line"></i> Enquire </a> </div> </div> </div>` ; }); viewAllContainer.style.display = limit && filtered.length > limit ? "block" : "none"; } document.getElementById("viewAllBtn").addEventListener("click", () => render(null)); typeF.addEventListener("change", () => render(3)); locF.addEventListener("change", () => render(3)); confF.addEventListener("change", () => render(3)); /* ===== MODAL & CAROUSEL LOGIC ===== */ let currentPropertyIndex = -1; let currentImageIndex = 0; let currentPhotoArray = []; const modalBackdrop = document.getElementById("propertyModalBackdrop"); const modalTitleEl = document.getElementById("modalTitle"); const modalSubtitleEl = document.getElementById("modalSubtitle"); const modalMainImageEl = document.getElementById("modalMainImage"); const modalTagsEl = document.getElementById("modalTags"); const modalMainListEl = document.getElementById("modalMainList"); const modalListingLink = document.getElementById("modalListingLink"); const modalCloseBtn = document.getElementById("modalCloseBtn"); const carouselPrevBtn = document.getElementById("carouselPrev"); const carouselNextBtn = document.getElementById("carouselNext"); const carouselDotsEl = document.getElementById("carouselDots"); const carouselStripEl = document.getElementById("carouselStrip"); function setCarouselImage(index) { if (!currentPhotoArray.length) return; currentImageIndex = ((index % currentPhotoArray.length) + currentPhotoArray.length) % currentPhotoArray.length; modalMainImageEl.src = currentPhotoArray[currentImageIndex]; // Update dots Array.from(carouselDotsEl.children).forEach((dot, i) => { dot.classList.toggle("active", i === currentImageIndex); }); // Update thumbs Array.from(carouselStripEl.children).forEach((thumb, i) => { thumb.classList.toggle("active", i === currentImageIndex); }); } function buildCarousel(photos) { currentPhotoArray = photos.length ? photos : [ "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" ]; carouselDotsEl.innerHTML = ""; carouselStripEl.innerHTML = ""; currentPhotoArray.forEach((url, idx) => { const dot = document.createElement("button"); dot.className = "carousel-dot" + (idx === 0 ? " active" : ""); dot.type = "button"; dot.addEventListener("click", () => setCarouselImage(idx)); carouselDotsEl.appendChild(dot); const thumb = document.createElement("div"); thumb.className = "carousel-thumb" + (idx === 0 ? " active" : ""); thumb.innerHTML = `<img src="${url}" alt="Property thumbnail ${idx + 1}" />`; thumb.addEventListener("click", () => setCarouselImage(idx)); carouselStripEl.appendChild(thumb); }); setCarouselImage(0); } function openPropertyModal(index) { const p = properties[index]; if (!p) return; modalTitleEl.textContent = p.Property || "Property details"; modalSubtitleEl.textContent = `${p.Locality || ""} · ${p.Configuration || ""}`; modalListingLink.href = p["MB Link"] || "#"; modalTagsEl.innerHTML = ""; modalMainListEl.innerHTML = ""; if (p.Status) modalTagsEl.innerHTML += `<span class="modal-tag">${p.Status}</span>`; if (p.Furnishing) modalTagsEl.innerHTML += `<span class="modal-tag">${p.Furnishing}</span>`; const bullets = []; if (p.Builder) bullets.push(`Builder: ${p.Builder}`); if (p.Configuration) bullets.push(`Configuration: ${p.Configuration}`); if (p.Locality) bullets.push(`Locality: ${p.Locality}`); if (p.Status) bullets.push(`Status: ${p.Status}`); modalMainListEl.innerHTML = bullets.map(b => `<li>${b}</li>`).join(""); const imgs = parsePhotoArray(p.Photos); buildCarousel(imgs); modalBackdrop.classList.add("is-open"); } function closePropertyModal() { modalBackdrop.classList.remove("is-open"); currentPropertyIndex = -1; currentImageIndex = 0; currentPhotoArray = []; } window.openPropertyModal = openPropertyModal; modalCloseBtn.addEventListener("click", closePropertyModal); modalBackdrop.addEventListener("click", (e) => { if (e.target === modalBackdrop) closePropertyModal(); }); document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modalBackdrop.classList.contains("is-open")) { closePropertyModal(); } }); carouselPrevBtn.addEventListener("click", () => { if (!currentPhotoArray.length) return; setCarouselImage(currentImageIndex - 1); }); carouselNextBtn.addEventListener("click", () => { if (!currentPhotoArray.length) return; setCarouselImage(currentImageIndex + 1); }); 
+        function initFiltersAndCounts() {
+    fillSelect(typeF, "Type", "types");
+    fillSelect(locF, "Locality", "localities");
+    fillSelect(confF, "Configuration", "configurations");
+    heroPropertyCountEl.textContent = `${properties.length} curated properties`;
+}
+
+function matchesFilters(p) {
+    return (
+        (typeF.value === "all" || p.Type === typeF.value) &&
+        (locF.value === "all" || p.Locality === locF.value) &&
+        (confF.value === "all" || p.Configuration === confF.value)
+    );
+}
+
+// Render cards
+function render(limit) {
+    const viewAllContainer = document.getElementById("viewAllContainer");
+    const filtered = properties.filter(matchesFilters);
+    grid.innerHTML = "";
+
+    if (!filtered.length) {
+        grid.innerHTML =
+            "<p style='font-size:13px;color:var(--muted);'>No matching properties found.</p>";
+        viewAllContainer.style.display = "none";
+        return;
+    }
+
+    const toShow = limit ? filtered.slice(0, limit) : filtered;
+
+    toShow.forEach(p => {
+        const photos = parsePhotoArray(p.Photos);
+        const cover =
+            photos[0] ||
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688";
+
+        const propertyIndex = properties.indexOf(p);
+
+        grid.innerHTML += `
+            <div class="card glass">
+                <div class="card-media">
+                    <img src="${cover}" alt="Property image"
+                        onerror="this.src='https://images.unsplash.com/photo-1502672260266-1c1ef2d93688';">
+                </div>
+                <div class="card-body">
+                    <h3>${p.Property}</h3>
+                    <p class="card-sub">${p.Locality} · ${p.Configuration}</p>
+                    <p class="card-builder">Builder: ${p.Builder || "N/A"}</p>
+                    <div class="card-actions">
+                        <button type="button" class="btn-pill"
+                            onclick="openPropertyModal(${propertyIndex})">
+                            <i class="ri-gallery-line"></i> View Photos
+                        </button>
+                        <a target="_blank"
+                           href="https://wa.me/917019285746?text=Hi, I'm interested in ${p.Property}"
+                           class="btn-pill primary">
+                            <i class="ri-whatsapp-line"></i> Enquire
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    viewAllContainer.style.display =
+        limit && filtered.length > limit ? "block" : "none";
+}
+
         
+        document.getElementById("viewAllBtn").addEventListener("click", () => render(null)); typeF.addEventListener("change", () => render(3)); locF.addEventListener("change", () => render(3)); confF.addEventListener("change", () => render(3)); /* ===== MODAL & CAROUSEL LOGIC ===== */ let currentPropertyIndex = -1; let currentImageIndex = 0; let currentPhotoArray = []; const modalBackdrop = document.getElementById("propertyModalBackdrop"); const modalTitleEl = document.getElementById("modalTitle"); const modalSubtitleEl = document.getElementById("modalSubtitle"); const modalMainImageEl = document.getElementById("modalMainImage"); const modalTagsEl = document.getElementById("modalTags"); const modalMainListEl = document.getElementById("modalMainList"); const modalListingLink = document.getElementById("modalListingLink"); const modalCloseBtn = document.getElementById("modalCloseBtn"); const carouselPrevBtn = document.getElementById("carouselPrev"); const carouselNextBtn = document.getElementById("carouselNext"); const carouselDotsEl = document.getElementById("carouselDots"); const carouselStripEl = document.getElementById("carouselStrip"); function setCarouselImage(index) { if (!currentPhotoArray.length) return; currentImageIndex = ((index % currentPhotoArray.length) + currentPhotoArray.length) % currentPhotoArray.length; modalMainImageEl.src = currentPhotoArray[currentImageIndex]; // Update dots Array.from(carouselDotsEl.children).forEach((dot, i) => { dot.classList.toggle("active", i === currentImageIndex); }); // Update thumbs Array.from(carouselStripEl.children).forEach((thumb, i) => { thumb.classList.toggle("active", i === currentImageIndex); }); } function buildCarousel(photos) { currentPhotoArray = photos.length ? photos : [ "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" ]; carouselDotsEl.innerHTML = ""; carouselStripEl.innerHTML = ""; currentPhotoArray.forEach((url, idx) => { const dot = document.createElement("button"); dot.className = "carousel-dot" + (idx === 0 ? " active" : ""); dot.type = "button"; dot.addEventListener("click", () => setCarouselImage(idx)); carouselDotsEl.appendChild(dot); const thumb = document.createElement("div"); thumb.className = "carousel-thumb" + (idx === 0 ? " active" : ""); thumb.innerHTML = `<img src="${url}" alt="Property thumbnail ${idx + 1}" />`; thumb.addEventListener("click", () => setCarouselImage(idx)); carouselStripEl.appendChild(thumb); }); setCarouselImage(0); } function openPropertyModal(index) { const p = properties[index]; if (!p) return; modalTitleEl.textContent = p.Property || "Property details"; modalSubtitleEl.textContent = `${p.Locality || ""} · ${p.Configuration || ""}`; modalListingLink.href = p["MB Link"] || "#"; modalTagsEl.innerHTML = ""; modalMainListEl.innerHTML = ""; if (p.Status) modalTagsEl.innerHTML += `<span class="modal-tag">${p.Status}</span>`; if (p.Furnishing) modalTagsEl.innerHTML += `<span class="modal-tag">${p.Furnishing}</span>`; const bullets = []; if (p.Builder) bullets.push(`Builder: ${p.Builder}`); if (p.Configuration) bullets.push(`Configuration: ${p.Configuration}`); if (p.Locality) bullets.push(`Locality: ${p.Locality}`); if (p.Status) bullets.push(`Status: ${p.Status}`); modalMainListEl.innerHTML = bullets.map(b => `<li>${b}</li>`).join(""); const imgs = parsePhotoArray(p.Photos); buildCarousel(imgs); modalBackdrop.classList.add("is-open"); } function closePropertyModal() { modalBackdrop.classList.remove("is-open"); currentPropertyIndex = -1; currentImageIndex = 0; currentPhotoArray = []; } window.openPropertyModal = openPropertyModal; modalCloseBtn.addEventListener("click", closePropertyModal); modalBackdrop.addEventListener("click", (e) => { if (e.target === modalBackdrop) closePropertyModal(); }); document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modalBackdrop.classList.contains("is-open")) { closePropertyModal(); } }); carouselPrevBtn.addEventListener("click", () => { if (!currentPhotoArray.length) return; setCarouselImage(currentImageIndex - 1); }); carouselNextBtn.addEventListener("click", () => { if (!currentPhotoArray.length) return; setCarouselImage(currentImageIndex + 1); }); 
+
+             
+                
         /* ===== FETCH DATA FROM GOOGLE SHEETS ===== */
 
 grid.innerHTML =
   "<p style='font-size:13px;color:var(--muted);'>Loading curated properties...</p>";
 
 fetch(SHEET_URL)
-  .then(r => r.json())
+  .then(res => res.json())
   .then(data => {
-    if (Array.isArray(data) && data.length > 0) {
-      properties = data;
-      initFiltersAndCounts();
-      render(3);
-    } else {
+    console.log("RAW DATA:", data);
+
+    if (!Array.isArray(data) || data.length === 0) {
       grid.innerHTML =
         "<p style='font-size:13px;color:#9ca3af;'>Sheet connected, but no property data returned yet.</p>";
+      return;
     }
+
+    properties = data;
+    initFiltersAndCounts();
+    render(3);
   })
   .catch(err => {
-    console.error("Error connecting to Google Sheet Web App:", err);
+    console.error(err);
     grid.innerHTML =
-      "<p style='font-size:13px;color:#9ca3af;'>Could not load properties at this time.</p>";
+      "<p style='font-size:13px;color:#9ca3af;'>Could not load properties.</p>";
   });
+
 
 });   
 
