@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>All Properties • Frontline Homes</title>
+  <title>All Properties | Frontline Homes</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,320 +12,1243 @@
   <!-- Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
 
-  <!-- ✅ FULL CSS (IDENTICAL TO HOME) -->
-  <!-- ✅ NOTHING REMOVED -->
-  <!-- ✅ SAFE TO SHARE STYLES -->
   <style>
-/* ====== CORE THEME ====== */
-:root {
-  --brand-gold:#d4af37;
-  --brand-gold-strong:#b8962e;
-  --brand-gold-soft:rgba(212,175,55,.25);
-  --glass:rgba(255,255,255,.55);
-  --border:rgba(255,255,255,.4);
-  --text:#1f2937;
-  --muted:#6b7280;
-}
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  font-family:Manrope,system-ui,sans-serif;
-  color:var(--text);
-  background:transparent;
-}
-body::before{
-  content:"";
-  position:fixed;
-  inset:-20px;
-  background:url("https://images.unsplash.com/photo-1600585154340-be6161b89a0c") center/cover;
-  filter:blur(22px) brightness(.78);
-  transform:scale(1.1);
-  z-index:-1;
-}
-.container{max-width:1200px;margin:auto;padding:28px 20px}
-.glass{
-  background:var(--glass);
-  backdrop-filter:blur(20px) saturate(150%);
-  border:1px solid var(--border);
-}
+    :root {
+      --brand-gold: #d4af37;
+      --brand-gold-strong: #b8962e;
+      --brand-gold-soft: rgba(212, 175, 55, 0.25);
 
-/* ====== HEADER ====== */
-header{
-  position:sticky;
-  top:0;
-  z-index:30;
-}
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.brand{display:flex;gap:14px;align-items:center}
-.brand img{height:44px;border-radius:8px}
-.brand-text strong{font-size:18px}
-.nav-actions{display:flex;gap:12px}
-.nav-cta{
-  padding:10px 18px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--brand-gold),var(--brand-gold-strong));
-  color:#3b2f00;
-  text-decoration:none;
-  font-weight:600;
-}
+      --glass: rgba(255, 255, 255, 0.35);
+      --border: rgba(255, 255, 255, 0.38);
 
-/* ====== FILTERS ====== */
-.filters{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:20px;
-}
-.select-wrap select{
-  padding:10px 14px;
-  border-radius:999px;
-  border:1px solid #d1d5db;
-  min-width:150px;
-}
+      --text: #1f2933;
+      --muted: #4b5563;
+    }
 
-/* ====== GRID & CARD ====== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
-  gap:26px;
-  margin-top:28px;
-}
-.card{
-  border-radius:24px;
-  overflow:hidden;
-  box-shadow:0 25px 55px rgba(0,0,0,.15);
-  transition:.35s;
-}
-.card:hover{transform:translateY(-6px)}
-.card-media{
-  height:220px;
-  position:relative;
-}
-.card-media img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.card-media::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,transparent,rgba(0,0,0,.6));
-}
-.card-body{padding:18px 20px}
-.card-body h3{margin:0;font-size:18px}
-.card-sub{font-size:13px;color:var(--muted)}
-.card-builder{font-size:12px;margin-top:6px}
-.card-actions{
-  margin-top:16px;
-  display:flex;
-  gap:10px;
-}
-.btn-pill{
-  flex:1;
-  padding:9px;
-  border-radius:999px;
-  border:1px solid #d1d5db;
-  background:#fff;
-  cursor:pointer;
-}
-.btn-pill.primary{
-  background:#22c55e;
-  color:#fff;
-  border:none;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-/* ====== MODAL ====== */
-.modal-backdrop{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  pointer-events:none;
-}
-.modal-backdrop.is-open{
-  opacity:1;
-  pointer-events:auto;
-}
-.modal{
-  width:90%;
-  max-width:900px;
-  background:#fff;
-  border-radius:24px;
-  overflow:hidden;
-}
-.modal-body{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:20px;
-  padding:18px;
-}
-.carousel-main{height:320px}
-.carousel-main img{width:100%;height:100%;object-fit:cover}
-.modal-details{font-size:14px}
-.modal-detail-item{
-  display:flex;
-  gap:10px;
-  padding:8px;
-  background:#f9fafb;
-  border-radius:10px;
-  margin-bottom:8px;
-}
-.modal-cta-row{
-  display:flex;
-  gap:10px;
-  margin-top:14px;
-}
-.btn-ghost-pill{
-  padding:10px 14px;
-  border-radius:999px;
-  text-decoration:none;
-  background:#fff;
-  border:1px solid #e5e7eb;
-}
-.btn-ghost-pill.schedule{
-  background:#22c55e;
-  color:#fff;
-  border:none;
-}
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Manrope, system-ui, sans-serif;
+      color: var(--text);
+      background: transparent !important;
+    }
 
-/* ====== FOOTER ====== */
-footer{margin-top:60px}
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  font-size:12px;
-}
-.footer-icon-link{
-  width:28px;height:28px;
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid #d1d5db;
-}
+    body {
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    /* GLOBAL GLASS BACKGROUND (same as homepage) */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20px;
+      background-image: url("https://images.unsplash.com/photo-1600585154340-be6161b89a0c");
+      background-size: cover;
+      background-position: center;
+      filter: blur(22px) brightness(0.75);
+      transform: scale(1.15);
+      z-index: -1;
+    }
+
+    section,
+    .container {
+      background: transparent !important;
+    }
+
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      border: 1px solid var(--border);
+    }
+
+    /* HEADER (aligned with home page) */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-text strong {
+      font-size: 18px;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-text small {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .brand-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .nav-phone i {
+      font-size: 15px;
+      color: #22c55e;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.55);
+      background: linear-gradient(135deg, var(--brand-gold), var(--brand-gold-strong));
+      color: #3a2f00;
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      box-shadow: 0 8px 22px rgba(212,175,55,0.35);
+    }
+
+    .nav-cta i {
+      font-size: 16px;
+    }
+
+    .logo-wrap img {
+      height: 44px;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* PAGE TITLE / SUBHEADER */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+      margin-top: 8px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .back-link i {
+      font-size: 16px;
+    }
+
+    .page-title {
+      font-size: 26px;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .page-subtitle {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* FILTERS */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 18px 0 24px;
+    }
+
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap select {
+      appearance: none;
+      padding: 10px 32px 10px 14px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--text);
+      font-family: inherit;
+      min-width: 150px;
+    }
+
+    .select-wrap i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    /* ===== PREMIUM PROPERTY CARD (same feel as home) ===== */
+    .card {
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 1px rgba(255,255,255,0.35);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      background: rgba(255,255,255,0.9);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 34px 70px rgba(0, 0, 0, 0.18),
+        inset 0 0 0 1px rgba(255,255,255,0.45);
+    }
+
+    .card-media {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      background: #020617;
+    }
+
+    .card-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.55));
+      pointer-events: none;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover .card-media img {
+      transform: scale(1.06);
+    }
+
+    .card-body {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-body h3 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
+
+    .card-sub {
+      font-size: 13px;
+      margin-top: 2px;
+      opacity: 0.9;
+      color: var(--muted);
+    }
+
+    .card-builder {
+      font-size: 12px;
+      margin-top: 6px;
+      padding-left: 10px;
+      border-left: 2px solid var(--brand-gold-soft);
+      color: var(--muted);
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .btn-pill {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+      background: #ffffff;
+    }
+
+    .btn-pill i {
+      font-size: 15px;
+    }
+
+    .btn-pill.primary {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ffffff !important;
+      font-weight: 600;
+      border-color: transparent;
+      box-shadow: 0 12px 26px rgba(34,197,94,0.35);
+    }
+
+    .btn-pill.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(34,197,94,0.45);
+    }
+
+    /* MAIN BUTTON STYLE (for misc CTAs if needed) */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 0;
+      font-size: 14px;
+      font-weight: 600;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.35);
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #3b2f00;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(250, 204, 21, 0.35);
+    }
+
+    a.btn-primary,
+    button.btn-primary {
+      color: #3b2f00 !important;
+    }
+
+    .btn-primary i {
+      font-size: 16px;
+    }
+
+    /* MODAL (same design as homepage) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      visibility: hidden;
+    }
+
+    .modal-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    .modal {
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      border-radius: 24px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(22px) saturate(150%);
+    }
+
+    .modal-header {
+      padding: 14px 18px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+      gap: 18px;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .modal-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .modal-title-block h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .modal-sub {
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .modal-close-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(255, 255, 255, 0.9);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .modal-close-btn i {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .modal-body {
+      padding: 14px 18px 16px;
+      overflow-y: auto;
+    }
+
+    .modal-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .modal-carousel {
+      background: #020617;
+      border-radius: 20px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-main {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background: #020617;
+    }
+
+    .carousel-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.86);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .carousel-nav-btn i {
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .carousel-prev {
+      left: 12px;
+    }
+
+    .carousel-next {
+      right: 12px;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.8);
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .carousel-dot.active {
+      background: var(--brand-gold);
+    }
+
+    .carousel-strip {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 70px;
+      gap: 8px;
+      padding: 8px;
+      overflow-x: auto;
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .carousel-thumb {
+      width: 70px;
+      height: 50px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      cursor: pointer;
+      opacity: 0.65;
+      flex-shrink: 0;
+    }
+
+    .carousel-thumb.active {
+      border-color: #f97316;
+      opacity: 1;
+    }
+
+    .carousel-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.88);
+      padding: 18px 18px 20px;
+      border-radius: 18px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+    }
+
+    .modal-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .modal-tag {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-tag i {
+      font-size: 13px;
+      color: var(--brand-gold);
+    }
+
+    .modal-section-label {
+      margin-top: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7280;
+      font-weight: 600;
+    }
+
+    .modal-main-list {
+      list-style: none;
+      margin: 4px 0 0;
+      padding-left: 0;
+      font-size: 14px;
+      color: #1f2937;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+      font-size: 14px;
+      color: #1f2937;
+    }
+
+    .modal-detail-item i {
+      font-size: 16px;
+      color: var(--brand-gold);
+      margin-top: 2px;
+    }
+
+    .modal-extra {
+      margin-top: 10px;
+      padding: 10px 11px;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .modal-cta-row {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-ghost-pill {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: #ffffff;
+      color: var(--text);
+      font-size: 13px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    .btn-ghost-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.15);
+    }
+
+    .btn-ghost-pill.primary {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      border-color: transparent;
+      color: #3b2f00 !important;
+    }
+
+    .btn-ghost-pill i {
+      font-size: 16px;
+    }
+
+    .btn-ghost-pill.schedule {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ffffff;
+      font-weight: 600;
+      border-color: transparent;
+    }
+
+    .btn-ghost-pill.schedule:hover {
+      box-shadow: 0 14px 36px rgba(34,197,94,0.45);
+    }
+
+    /* FOOTER (same as homepage) */
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-icon-link {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .footer-icon-link:hover {
+      border-color: var(--brand-gold);
+      color: var(--brand-gold);
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-link:hover {
+      color: var(--brand-gold);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .modal-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .modal {
+        max-height: 96vh;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .card-body {
+        padding: 16px 16px 18px;
+      }
+      .card-body h3 {
+        font-size: 16px;
+      }
+      .filters {
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 
 <body>
-
-<!-- HEADER -->
-<header class="glass">
-  <div class="container nav">
-    <div class="brand">
-      <img src="https://i.ibb.co/Fqgq7YQL/Logo-2.jpg">
-      <div class="brand-text"><strong>Frontline Homes</strong></div>
-    </div>
-    <div class="nav-actions">
-      <a class="nav-cta" href="index.html">← Back to home</a>
-    </div>
-  </div>
-</header>
-
-<!-- PROPERTIES -->
-<section class="container">
-  <h2>All Properties</h2>
-
-  <div class="filters">
-    <div class="select-wrap"><select id="type"></select></div>
-    <div class="select-wrap"><select id="locality"></select></div>
-    <div class="select-wrap"><select id="config"></select></div>
-  </div>
-
-  <div class="grid" id="grid"></div>
-</section>
-
-<!-- MODAL -->
-<div class="modal-backdrop" id="propertyModalBackdrop">
-  <div class="modal">
-    <div class="modal-body">
-      <div class="carousel-main">
-        <img id="modalMainImage">
-      </div>
-      <div class="modal-details">
-        <h3 id="modalTitle"></h3>
-        <ul id="modalMainList"></ul>
-        <div class="modal-cta-row">
-          <a id="modalListingLink" class="btn-ghost-pill">View listing</a>
-          <a class="btn-ghost-pill schedule" href="https://wa.me/917019285746">Schedule site visit</a>
+  <!-- HEADER -->
+  <header class="glass">
+    <div class="container nav">
+      <div class="brand">
+        <img src="https://i.ibb.co/Fqgq7YQL/Logo-2.jpg" alt="Frontline Homes logo" class="logo-wrap-img" style="height:44px;border-radius:8px;">
+        <div class="brand-text">
+          <strong>Frontline Homes</strong>
+          <small>
+            Bangalore
+            <span class="brand-pill">
+              <i class="ri-shield-check-line"></i>
+              Curated Homes
+            </span>
+          </small>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container footer-inner glass">
-    <span>© 2025 Frontline Homes · Bangalore</span>
-    <div>
-      <a class="footer-icon-link" href="mailto:frontlinehomesblr@gmail.com"><i class="ri-mail-line"></i></a>
-      <a class="footer-icon-link" href="https://wa.me/917019285746"><i class="ri-whatsapp-line"></i></a>
-    </div>
-  </div>
-</footer>
-
-<script>
-const SHEET_URL="https://script.google.com/macros/s/AKfycbyjZexXr0y3PqDoGB0AwF-ecID7M9NwLsmf9u6--Jh1bNNSjtQy8sNhLB_8id-GJ8PAUw/exec";
-let properties=[];
-
-function driveThumb(u){
- if(!u)return "";
- if(!u.includes("drive.google.com"))return u;
- let m=u.match(/\/d\/(.+?)\//)||u.match(/id=(.+)/);
- return m?`https://drive.google.com/thumbnail?id=${m[1]}&sz=w1000`:"";
-}
-
-function render(){
- const g=document.getElementById("grid");
- g.innerHTML="";
- properties.forEach((p,i)=>{
-  const img=driveThumb((p.Photos||"").split(",")[0]);
-  g.innerHTML+=`
-  <div class="card glass">
-    <div class="card-media"><img src="${img}"></div>
-    <div class="card-body">
-      <h3>${p.Property}</h3>
-      <p class="card-sub">${p.Locality} · ${p.Configuration}</p>
-      <p class="card-builder">Builder: ${p.Builder||""}</p>
-      <div class="card-actions">
-        <button class="btn-pill" onclick="openModal(${i})">View more details</button>
-        <a class="btn-pill primary" href="https://wa.me/917019285746">Enquire</a>
+      <div class="nav-actions">
+        <a class="nav-phone" href="tel:+917019285746">
+          <i class="ri-phone-fill"></i>
+          <span>+91 70192 85746</span>
+        </a>
+        <a class="nav-cta" href="index.html">
+          <i class="ri-home-8-line"></i>
+          <span>Back to home</span>
+        </a>
       </div>
     </div>
-  </div>`;
- });
-}
+  </header>
 
-function openModal(i){
- const p=properties[i];
- document.getElementById("modalTitle").innerText=p.Property;
- document.getElementById("modalMainImage").src=driveThumb((p.Photos||"").split(",")[0]);
- document.getElementById("modalMainList").innerHTML=`
-  <li class="modal-detail-item">Builder: ${p.Builder}</li>
-  <li class="modal-detail-item">Location: ${p.Locality}</li>
-  <li class="modal-detail-item">Config: ${p.Configuration}</li>`;
- document.getElementById("propertyModalBackdrop").classList.add("is-open");
-}
+  <!-- MAIN CONTENT -->
+  <main class="section">
+    <div class="container">
+      <a href="index.html" class="back-link">
+        <i class="ri-arrow-left-line"></i>
+        Back to home
+      </a>
 
-document.getElementById("propertyModalBackdrop")
-.addEventListener("click",e=>{
- if(e.target.id==="propertyModalBackdrop")
-  e.currentTarget.classList.remove("is-open");
-});
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">All Properties</h1>
+          <p class="page-subtitle">
+            Browse all curated homes we’re currently showcasing from your Google Sheet.
+          </p>
+        </div>
+      </div>
 
-fetch(SHEET_URL).then(r=>r.json()).then(d=>{
- properties=d||[];
- render();
-});
-</script>
+      <!-- FILTERS -->
+      <div class="filters">
+        <div class="select-wrap">
+          <select id="typeFilter"></select>
+          <i class="ri-arrow-down-s-line"></i>
+        </div>
+        <div class="select-wrap">
+          <select id="localityFilter"></select>
+          <i class="ri-arrow-down-s-line"></i>
+        </div>
+        <div class="select-wrap">
+          <select id="configFilter"></select>
+          <i class="ri-arrow-down-s-line"></i>
+        </div>
+        <div class="select-wrap">
+          <select id="builderFilter"></select>
+          <i class="ri-arrow-down-s-line"></i>
+        </div>
+      </div>
 
+      <!-- GRID -->
+      <div class="grid" id="grid"></div>
+    </div>
+  </main>
+
+  <!-- MODAL: PROPERTY DETAILS (same as home) -->
+  <div class="modal-backdrop" id="propertyModalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div class="modal-title-block">
+          <h2 id="modalTitle">Property details</h2>
+          <div class="modal-sub" id="modalSubtitle"></div>
+        </div>
+        <button class="modal-close-btn" type="button" id="modalCloseBtn">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-layout">
+          <!-- Carousel -->
+          <div class="modal-carousel">
+            <div class="carousel-main">
+              <img id="modalMainImage" src="" alt="Property image" />
+              <button type="button" class="carousel-nav-btn carousel-prev" id="carouselPrev">
+                <i class="ri-arrow-left-s-line"></i>
+              </button>
+              <button type="button" class="carousel-nav-btn carousel-next" id="carouselNext">
+                <i class="ri-arrow-right-s-line"></i>
+              </button>
+              <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+            <div class="carousel-strip" id="carouselStrip"></div>
+          </div>
+
+          <!-- Details -->
+          <div class="modal-details">
+            <div class="modal-tag-row" id="modalTags"></div>
+
+            <div>
+              <div class="modal-section-label">Main details</div>
+              <ul class="modal-main-list" id="modalMainList"></ul>
+            </div>
+
+            <div class="modal-extra" id="modalExtraText">
+              Photos shown are as shared by the builder/owner. We’ll reconfirm current availability and pricing during your call.
+            </div>
+
+            <div class="modal-cta-row">
+              <a href="#" target="_blank" rel="noopener" class="btn-ghost-pill primary" id="modalListingLink">
+                <i class="ri-external-link-line"></i>
+                View full listing / brochure
+              </a>
+              <a href="https://wa.me/917019285746?text=Hi%2C%20I%27m%20interested%20in%20a%20property%20from%20Frontline%20Homes" target="_blank" class="btn-ghost-pill" id="modalShareLink">
+                <i class="ri-whatsapp-line"></i>
+                Share this property on WhatsApp
+              </a>
+              <a href="https://wa.me/917019285746?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20site%20visit" target="_blank" class="btn-ghost-pill schedule" id="modalVisitLink">
+                <i class="ri-calendar-check-line"></i>
+                Schedule site visit
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner glass">
+      <div class="footer-left">
+        <div class="footer-social">
+          <a href="mailto:frontlinehomesblr@gmail.com" class="footer-icon-link" aria-label="Email">
+            <i class="ri-mail-line"></i>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" class="footer-icon-link" aria-label="Instagram">
+            <i class="ri-instagram-line"></i>
+          </a>
+          <a href="https://wa.me/917019285746" target="_blank" class="footer-icon-link" aria-label="WhatsApp">
+            <i class="ri-whatsapp-line"></i>
+          </a>
+        </div>
+        <span>© 2025 Frontline Homes · Bangalore</span>
+      </div>
+
+      <div class="footer-right">
+        <a href="index.html#how-it-works" class="footer-link">How it works</a>
+        <a href="contact.html" class="footer-link">Contact us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== GOOGLE SHEETS CONFIG =====
+    const SHEET_URL = "https://script.google.com/macros/s/AKfycbyjZexXr0y3PqDoGB0AwF-ecID7M9NwLsmf9u6--Jh1bNNSjtQy8sNhLB_8id-GJ8PAUw/exec";
+
+    let properties = [];
+
+    // Convert Google Drive / image URLs to thumbnail URLs
+    function driveThumb(url) {
+      if (!url) return "";
+      url = url.trim();
+
+      if (!url.includes("drive.google.com")) {
+        return url;
+      }
+
+      let idMatch =
+        url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) ||
+        url.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
+        url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+
+      const id = idMatch ? idMatch[1] : null;
+
+      if (!id) {
+        return "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688";
+      }
+
+      return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+    }
+
+    function parsePhotoArray(photosField) {
+      if (!photosField) return [];
+      return photosField
+        .split(/[\n,]+/)
+        .map(s => s.trim())
+        .filter(Boolean)
+        .map(driveThumb);
+    }
+
+    const grid = document.getElementById("grid");
+    const typeF = document.getElementById("typeFilter");
+    const locF = document.getElementById("localityFilter");
+    const confF = document.getElementById("configFilter");
+    const builderF = document.getElementById("builderFilter");
+
+    function fillSelect(sel, key, label) {
+      const values = [...new Set(properties.map(p => (p[key] || "").trim()).filter(Boolean))];
+      values.sort((a, b) => a.localeCompare(b));
+      sel.innerHTML =
+        `<option value="all">All ${label}</option>` +
+        values.map(v => `<option value="${v}">${v}</option>`).join("");
+    }
+
+    function initFilters() {
+      fillSelect(typeF, "Type", "types");
+      fillSelect(locF, "Locality", "localities");
+      fillSelect(confF, "Configuration", "configs");
+      fillSelect(builderF, "Builder", "builders");
+    }
+
+    function matchesFilters(p) {
+      return (
+        (typeF.value === "all" || p.Type === typeF.value) &&
+        (locF.value === "all" || p.Locality === locF.value) &&
+        (confF.value === "all" || p.Configuration === confF.value) &&
+        (builderF.value === "all" || p.Builder === builderF.value)
+      );
+    }
+
+    function render() {
+      const filtered = properties.filter(matchesFilters);
+      grid.innerHTML = "";
+
+      if (!filtered.length) {
+        grid.innerHTML = "<p style='font-size:13px;color:var(--muted);'>No matching properties found. Try adjusting the filters.</p>";
+        return;
+      }
+
+      filtered.forEach(p => {
+        const photos = parsePhotoArray(p.Photos);
+        const cover = photos.length > 0
+          ? photos[0]
+          : "https://images.unsplash.com/photo-1502673530728-f79b4cab31b1";
+
+        const propertyIndex = properties.indexOf(p);
+        const enquireUrl = `https://wa.me/917019285746?text=${encodeURIComponent("Hi, I'm interested in " + (p.Property || "a property") + " listed on Frontline Homes")}`;
+
+        grid.innerHTML += `
+          <div class="card">
+            <div class="card-media">
+              <img
+                src="${cover}"
+                alt="Property image for ${p.Property || "property"}"
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1502672260266-1c1ef2d93688';"
+              >
+            </div>
+            <div class="card-body">
+              <h3>${p.Property || "Untitled property"}</h3>
+              <p class="card-sub">
+                ${(p.Locality || "Bangalore")} · ${(p.Configuration || "Config TBD")}
+              </p>
+              <p class="card-builder">Builder: ${p.Builder || "N/A"}</p>
+              <div class="card-actions">
+                <button type="button" class="btn-pill" onclick="openPropertyModal(${propertyIndex})">
+                  <i class="ri-information-line"></i>
+                  View more details
+                </button>
+                <a href="${enquireUrl}" target="_blank" class="btn-pill primary">
+                  <i class="ri-whatsapp-line"></i>
+                  Enquire
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    typeF.addEventListener("change", render);
+    locF.addEventListener("change", render);
+    confF.addEventListener("change", render);
+    builderF.addEventListener("change", render);
+
+    // ===== MODAL & CAROUSEL LOGIC (same as home) =====
+    let currentImageIndex = 0;
+    let currentPhotoArray = [];
+
+    const modalBackdrop = document.getElementById("propertyModalBackdrop");
+    const modalTitleEl = document.getElementById("modalTitle");
+    const modalSubtitleEl = document.getElementById("modalSubtitle");
+    const modalMainImageEl = document.getElementById("modalMainImage");
+    const modalTagsEl = document.getElementById("modalTags");
+    const modalMainListEl = document.getElementById("modalMainList");
+    const modalListingLink = document.getElementById("modalListingLink");
+    const modalShareLink = document.getElementById("modalShareLink");
+    const modalVisitLink = document.getElementById("modalVisitLink");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+    const carouselPrevBtn = document.getElementById("carouselPrev");
+    const carouselNextBtn = document.getElementById("carouselNext");
+    const carouselDotsEl = document.getElementById("carouselDots");
+    const carouselStripEl = document.getElementById("carouselStrip");
+
+    function setCarouselImage(index) {
+      if (!currentPhotoArray.length) return;
+      const len = currentPhotoArray.length;
+      currentImageIndex = ((index % len) + len) % len;
+      modalMainImageEl.src = currentPhotoArray[currentImageIndex];
+
+      Array.from(carouselDotsEl.children).forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentImageIndex);
+      });
+      Array.from(carouselStripEl.children).forEach((thumb, i) => {
+        thumb.classList.toggle("active", i === currentImageIndex);
+      });
+    }
+
+    function buildCarousel(photos) {
+      currentPhotoArray = photos.length
+        ? photos
+        : ["https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80"];
+
+      carouselDotsEl.innerHTML = "";
+      carouselStripEl.innerHTML = "";
+
+      currentPhotoArray.forEach((url, idx) => {
+        const dot = document.createElement("button");
+        dot.className = "carousel-dot" + (idx === 0 ? " active" : "");
+        dot.type = "button";
+        dot.addEventListener("click", () => setCarouselImage(idx));
+        carouselDotsEl.appendChild(dot);
+
+        const thumb = document.createElement("div");
+        thumb.className = "carousel-thumb" + (idx === 0 ? " active" : "");
+        thumb.innerHTML = `<img src="${url}" alt="Property thumbnail ${idx + 1}" />`;
+        thumb.addEventListener("click", () => setCarouselImage(idx));
+        carouselStripEl.appendChild(thumb);
+      });
+
+      setCarouselImage(0);
+    }
+
+    function openPropertyModal(index) {
+      const p = properties[index];
+      if (!p) return;
+
+      modalTitleEl.textContent = p.Property || "Property details";
+      modalSubtitleEl.textContent = `${p.Locality || ""} · ${p.Configuration || ""}`;
+
+      const mbLink = p["MB Link"] || p["Listing Link"] || "#";
+      modalListingLink.href = mbLink === "" ? "#" : mbLink;
+
+      const shareText = `Hi, I'm looking at ${p.Property || "a property"} in ${p.Locality || "Bangalore"} from Frontline Homes.`;
+      modalShareLink.href = `https://wa.me/917019285746?text=${encodeURIComponent(shareText)}`;
+
+      const visitText = `Hi, I'd like to schedule a site visit for ${p.Property || "a property"} in ${p.Locality || "Bangalore"}.`;
+      modalVisitLink.href = `https://wa.me/917019285746?text=${encodeURIComponent(visitText)}`;
+
+      modalTagsEl.innerHTML = "";
+      modalMainListEl.innerHTML = "";
+
+      if (p.Status) {
+        modalTagsEl.innerHTML += `<span class="modal-tag"><i class="ri-timer-line"></i>${p.Status}</span>`;
+      }
+      if (p.Furnishing) {
+        modalTagsEl.innerHTML += `<span class="modal-tag"><i class="ri-sofa-line"></i>${p.Furnishing}</span>`;
+      }
+
+      const bullets = [];
+      if (p.Builder) bullets.push({ icon: "ri-building-4-line", text: `Builder: ${p.Builder}` });
+      if (p.Configuration) bullets.push({ icon: "ri-layout-5-line", text: `Configuration: ${p.Configuration}` });
+      if (p.Locality) bullets.push({ icon: "ri-map-pin-2-line", text: `Locality: ${p.Locality}` });
+      if (p.Status) bullets.push({ icon: "ri-flag-line", text: `Status: ${p.Status}` });
+
+      modalMainListEl.innerHTML = bullets
+        .map(b => `
+          <li class="modal-detail-item">
+            <i class="${b.icon}"></i>
+            <span>${b.text}</span>
+          </li>
+        `)
+        .join("");
+
+      const imgs = parsePhotoArray(p.Photos);
+      buildCarousel(imgs);
+
+      modalBackdrop.classList.add("is-open");
+    }
+
+    function closePropertyModal() {
+      modalBackdrop.classList.remove("is-open");
+      currentImageIndex = 0;
+      currentPhotoArray = [];
+    }
+
+    window.openPropertyModal = openPropertyModal;
+
+    modalCloseBtn.addEventListener("click", closePropertyModal);
+    modalBackdrop.addEventListener("click", e => {
+      if (e.target === modalBackdrop) closePropertyModal();
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && modalBackdrop.classList.contains("is-open")) {
+        closePropertyModal();
+      }
+    });
+
+    carouselPrevBtn.addEventListener("click", () => {
+      if (!currentPhotoArray.length) return;
+      setCarouselImage(currentImageIndex - 1);
+    });
+
+    carouselNextBtn.addEventListener("click", () => {
+      if (!currentPhotoArray.length) return;
+      setCarouselImage(currentImageIndex + 1);
+    });
+
+    // ===== FETCH DATA =====
+    grid.innerHTML = "<p style='font-size:13px;color:var(--muted);'>Loading curated properties...</p>";
+
+    fetch(SHEET_URL)
+      .then(r => r.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          properties = data;
+          initFilters();
+          render();
+        } else {
+          grid.innerHTML = "<p style='font-size:13px;color:var(--muted);'>Sheet connected, but no property data returned yet.</p>";
+        }
+      })
+      .catch(e => {
+        console.error("Error connecting to Google Sheet Web App:", e);
+        grid.innerHTML = "<p style='font-size:13px;color:var(--muted);'>Could not load properties at this time. Please try again later.</p>";
+      });
+  </script>
 </body>
 </html>
