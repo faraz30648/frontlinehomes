@@ -276,6 +276,29 @@ button.btn-primary {
       font-size: 12px;
       color: var(--muted);
     }
+    
+    /* HERO METRICS READABILITY FIX */
+    .hero-metrics {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .hero-metric strong {
+      font-size: 16px;
+      color: #111827; /* dark readable */
+    }
+
+    .hero-metric span {
+      font-size: 12px;
+      color: #374151; /* muted but readable */
+ 
+    }
+
  
     .hero-metric {
       display: flex;
@@ -290,13 +313,16 @@ button.btn-primary {
  
     .hero-visual {
       position: relative;
-      border-radius: var(--radius-xl);
+      border-radius: 26px;
       overflow: hidden;
-      border: 1px solid rgba(55, 65, 81, 0.7);
-      box-shadow: var(--shadow-soft);
-      min-height: 260px;
-      background: radial-gradient(circle at top, #1e293b, #020617);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow:
+       0 28px 60px rgba(0, 0, 0, 0.35),
+       inset 0 0 0 1px rgba(255,255,255,0.25);
+      min-height: 300px;
+      background: #000;
     }
+
  
     .hero-bg {
       position: absolute;
@@ -305,6 +331,8 @@ button.btn-primary {
       background-position: center;
       transition: opacity 0.8s ease, transform 5s ease;
       opacity: 0;
+      border-radius: 26px;
+
     }
  
     .hero-bg.active {
@@ -338,6 +366,9 @@ button.btn-primary {
       gap: 16px;
       font-size: 12px;
       color: var(--text);
+      border-radius: 20px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+
     }
  
     .hero-floater span {
