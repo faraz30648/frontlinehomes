@@ -205,8 +205,9 @@
     .hero-layout {
       position: relative;
       z-index: 1;
-      max-width: 620px;
+      width: 100%;
     }
+
 
     .hero-copy h1 {
       font-size: clamp(32px, 4vw, 44px);
@@ -1245,6 +1246,148 @@
   transform: translateY(-6px);
 }
 
+.brand-logo-main {
+  height: 44px;
+  width: auto;
+
+  transform: scale(1.5);
+  transform-origin: left center;
+
+  border-radius: 8px;
+  display: block;
+}
+
+/* ===== HERO SPLIT LAYOUT (DESKTOP IMAGE) ===== */
+.hero-logo-back > div {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+
+/* right-side flip circle */
+.hero-side-image {
+  display: none; /* hidden by default (mobile-first) */
+}
+
+/* show only on tablet+ / desktop */
+@media (min-width: 768px) {
+  .hero-side-image {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    perspective: 1200px;
+  }
+}
+
+/* circular glass card */
+.hero-logo-card {
+  position: relative;
+  width: min(380px, 40vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0;
+  animation: heroImageReveal 0.9s ease-out forwards;
+  animation-delay: 0.2s;
+
+}
+
+/* flip-on-hover */
+.hero-side-image:hover .hero-logo-card {
+  opacity: 1;
+  transform: rotateY(180deg) scale(1.02);
+}
+
+.hero-logo-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* front: logo with glass + slight transparency */
+.hero-logo-front {
+  backface-visibility: hidden;
+  background: radial-gradient(
+    circle at 30% 0%,
+    rgba(255, 255, 255, 0.35),
+    rgba(0, 0, 0, 0.9)
+  );
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
+}
+
+
+.hero-logo-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9; /* subtle transparent look */
+  filter: brightness(1.03) contrast(1.05);
+}
+
+/* bring image to full strength on hover */
+.hero-side-image:hover .hero-logo-front img {
+  opacity: 1;
+}
+
+/* back: text face */
+.hero-logo-back {
+  transform: rotateY(180deg);
+  opacity: 1;
+  padding: 32px;
+  text-align: left;
+
+  background: rgba(15, 23, 42, 0.78);
+  opacity: 0;
+  transition: opacity 0.4s ease 0.35s;
+
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  color: #e5e7eb;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.45);
+}
+
+
+.hero-logo-back p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.hero-logo-back p:last-child {
+  margin-bottom: 0;
+}
+
+.hero-logo-back strong {
+  color: var(--brand-gold);
+}
+
+/* reveal animation */
+@keyframes heroImageReveal {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+
+
   </style>
 </head>
 
@@ -1255,7 +1398,10 @@
   <header class="glass">
     <div class="container nav">
       <div class="brand">
-        <img src="https://i.ibb.co/Fqgq7YQL/Logo-2.jpg" style="height:44px; border-radius: 8px;" alt="Frontline Homes logo">
+        <img src="https://i.ibb.co/QjQq4TJR/download-removebg-preview-removebg-preview.png"
+     class="brand-logo-main"
+     alt="Frontline Homes logo">
+
         <div class="brand-text">
           <strong>Frontline Homes</strong>
           <small>
@@ -1292,31 +1438,68 @@
 
     <div class="container">
       <div class="hero-layout">
-        <div class="hero-copy">
-          <div class="hero-highlight">
-            <i class="ri-sparkling-2-line"></i>
-            <span>Trusted homes across Bangalore</span>
-          </div>
-          <h1>Your gateway to memorable homes in Bangalore.</h1>
-          <p>
-            Discover handpicked apartments and villas, transparent pricing, and guidance from the first phone call to final registration.
-          </p>
-          <div class="hero-cta-row">
-            <a href="https://wa.me/917019285746?text=Hi%2C%20I%27d%20like%20to%20explore%20homes%20with%20Frontline%20Homes" target="_blank" class="btn-primary">
-              <i class="ri-whatsapp-line"></i>
-              Talk to a Property Expert
-            </a>
-            <a href="#how-it-works" class="btn-ghost">
-              <i class="ri-route-line"></i>
-              See how the process works
-            </a>
-          </div>
 
-          <div class="hero-counter">
-            <span>Currently showcasing</span>
-            <strong id="heroPropertyCount">Curated properties</strong>
-          </div>
-        </div>
+  <!-- LEFT: TEXT -->
+  <div class="hero-copy">
+    <div class="hero-highlight">
+      <i class="ri-sparkling-2-line"></i>
+      <span>Trusted homes across Bangalore</span>
+    </div>
+
+    <h1>Your gateway to memorable homes in Bangalore.</h1>
+
+    <p>
+      Discover handpicked apartments and villas, transparent pricing, and guidance from the first phone call to final registration.
+    </p>
+
+    <div class="hero-cta-row">
+      <a href="https://wa.me/917019285746" target="_blank" class="btn-primary">
+        <i class="ri-whatsapp-line"></i>
+        Talk to a Property Expert
+      </a>
+
+      <a href="#how-it-works" class="btn-ghost">
+        <i class="ri-route-line"></i>
+        See how the process works
+      </a>
+    </div>
+
+    <div class="hero-counter">
+      <span>Currently showcasing</span>
+      <strong id="heroPropertyCount">Curated properties</strong>
+    </div>
+  </div>
+
+  <!-- RIGHT: DESKTOP IMAGE (flip card) -->
+<div class="hero-side-image">
+  <div class="hero-logo-card">
+    <!-- front: logo -->
+    <div class="hero-logo-face hero-logo-front">
+      <img
+        src="https://i.ibb.co/4wmp7PQP/Logo-2.jpg"
+        alt="Frontline Homes brand visual"
+      />
+    </div>
+
+    <!-- back: blurred-glass text side -->
+    <div class="hero-logo-face hero-logo-back">
+      <div>
+        <p>
+          <strong>Frontline Homes</strong> is a premier real estate agency
+          recently founded by a passionate and experienced realtor in Bangalore.
+        </p>
+        <p>
+          Our vision is to help individuals and families find their dream homes,
+          making buying and selling properties in Bangalore a seamless and
+          delightful experience.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
       </div>
 
       <div class="hero-metrics">
