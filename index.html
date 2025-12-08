@@ -1920,6 +1920,9 @@
   </footer>
 
   <script>
+    
+    console.log("SCRIPT LOADED");
+
     /* ===== HERO CAROUSEL (background) ===== */
     const heroImages = [
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
@@ -2004,12 +2007,6 @@
     const builderF = document.getElementById("builder");
     const heroPropertyCountEl = document.getElementById("heroPropertyCount");
 
-    function normalize(value) {
-  return (value || "")
-    .toString()
-    .trim()
-    .toLowerCase();
-}
 
 function fillSelect(sel, key, label) {
   const rawValues = properties
@@ -2245,8 +2242,10 @@ function matchesFilters(p) {
     });
 
     /* ===== FETCH DATA FROM GOOGLE SHEETS ===== */
-    grid.innerHTML = "<p style='font-size:13px;color:var(--muted);'>Loading curated properties...</p>";
-    const cached = sessionStorage.getItem("properties");
+grid.innerHTML =
+  "<p style='font-size:13px;color:var(--muted);'>Loading curated properties...</p>";
+
+const cached = sessionStorage.getItem("properties");
 
 if (cached) {
   properties = JSON.parse(cached);
@@ -2260,14 +2259,15 @@ if (cached) {
       sessionStorage.setItem("properties", JSON.stringify(data));
       initFiltersAndCounts();
       render(3);
+    })
+    .catch(e => {
+      console.error("Error connecting to Google Sheet Web App:", e);
+      grid.innerHTML =
+        "<p style='font-size:13px;color:#9ca3af;'>Could not load properties at this time. Please try again later.</p>";
     });
 }
 
-      .catch(e => {
-        console.error("Error connecting to Google Sheet Web App:", e);
-        grid.innerHTML =
-          "<p style='font-size:13px;color:#9ca3af;'>Could not load properties at this time. Please try again later.</p>";
-      });
+
   </script>
   
   <a href="https://wa.me/917019285746"
