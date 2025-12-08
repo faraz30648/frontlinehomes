@@ -12,6 +12,7 @@
   <!-- Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
 
+
   <style>
     :root {
       --brand-gold: #d4af37;     /* muted luxury gold */
@@ -388,6 +389,72 @@
       font-weight: 500;
       color: #475569;
     }
+    
+    /* PARTNERS STRIP (CLIENT STYLE) */
+.partners-row {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  padding: 18px 4px;
+  scrollbar-width: none;
+}
+.partners-row::-webkit-scrollbar { display: none; }
+
+.partner-logo {
+  flex: 0 0 auto;
+  width: 240px;
+  height: 130px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  filter: grayscale(100%) opacity(0.55);
+  transition: all .3s ease;
+}
+
+.partner-logo img {
+  width: 100%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.partner-name {
+  margin-top: 8px;
+
+  font-family: "Space Grotesk", Manrope, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #111827;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.partner-logo:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: translateY(-6px);
+  box-shadow: 0 22px 46px rgba(0,0,0,.18);
+}
+
+.partner-logo.active {
+  color: var(--brand-gold);
+  filter: grayscale(0%) opacity(1);
+  border: 2px solid var(--brand-gold);
+}
+
+.partner-logo img {
+  width: 100%;
+  height: 70%;
+  object-fit: contain;
+}
+
+
 
     /* SECTION GENERIC */
     .section {
@@ -1121,13 +1188,7 @@
       }
     }
   
-    @media (hover: hover) {
-  .brand:hover .brand-logo-main {
-    transform: translateY(-1px) scale(1.03);
-    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
-  }
-}
-
+    
     @media (max-width: 640px) {
       .nav {
         flex-direction: column;
@@ -1231,6 +1292,31 @@
         font-size: 16px;
       }
     }
+    
+    .fab-whatsapp {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 36px rgba(34,197,94,.45);
+  z-index: 60;
+}
+
+/* hide on desktop */
+@media (min-width: 641px) {
+  .fab-whatsapp {
+    display: none;
+  }
+}
+
     
 /* ===============================
    INFO & STEP CARDS — HOVER ONLY
@@ -1410,350 +1496,161 @@
   }
 }
 
-  @media (max-width: 640px) {
 
-  /* HERO TEXT → CARD STYLE */
-  .hero-copy {
-    background: rgba(15, 23, 42, 0.82);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    padding: 18px 16px 20px;
-    border-radius: 22px;
-
-    box-shadow:
-      0 18px 40px rgba(0, 0, 0, 0.35),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-  }
-
-  .hero-copy h1 {
-    font-size: 24px;
-    line-height: 1.15;
-  }
-
-  .hero-copy p {
-    font-size: 14px;
-    line-height: 1.55;
-  }
-}
-  
-  
-  
-  @media (max-width: 640px) {
-
-  .filters {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .select-wrap select {
-    width: 100%;
-    min-width: 0;
-  }
-}
-  
-  @media (max-width: 640px) {
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  .card-media {
-    height: 150px;
-  }
-
-  .card h3 {
-    font-size: 14px;
-  }
-
-  .card-sub {
-    font-size: 12px;
-  }
-
-  .card-actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .btn-pill {
-    font-size: 12px;
-    padding: 8px 0;
-  }
-}
-  
-  /* ====================================================
-   MOBILE — HERO CARD + BUTTONS + 2-COLUMN CARDS
-   (DESKTOP SAFE)
+/* ====================================================
+   MOBILE APP UI OVERRIDES (SAFE – MOBILE ONLY)
    ==================================================== */
 @media (max-width: 640px) {
 
-  /* ---------- HERO CARD ---------- */
-  .hero-copy {
-    max-width: 92%;
-    margin: 0 auto;
-
-    background: linear-gradient(
-      180deg,
-      rgba(15, 23, 42, 0.9),
-      rgba(15, 23, 42, 0.85)
-    );
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    padding: 16px 16px 18px;
-    border-radius: 20px;
-
-    box-shadow:
-      0 18px 34px rgba(0, 0, 0, 0.35),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  }
-
-  .hero-copy h1 {
-    font-size: 22px;
-    line-height: 1.2;
-    letter-spacing: -0.2px;
-  }
-
-  .hero-copy p {
-    margin-top: 10px;
-    font-size: 13.5px;
-    line-height: 1.55;
-    opacity: 0.9;
-  }
-
-  .hero-badge {
-    font-size: 11px;
-    padding: 6px 10px;
-  }
-
-  /* ---------- HERO BUTTONS ---------- */
-  .hero-cta-row {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 14px;
-  }
-
-  .hero-cta-row .btn-primary {
-    width: 100%;
-    padding: 14px 0;
-    font-size: 14px;
-    border-radius: 999px;
-  }
-
-  .hero-cta-row .btn-ghost {
-    width: 100%;
-    padding: 12px 0;
-    font-size: 13px;
-    border-radius: 999px;
-    opacity: 0.95;
-  }
-
-  .hero-counter {
-    font-size: 12px;
+  /* HEADER: app-style compact header */
+  .nav {
+    flex-direction: row;
+    align-items: center;
     padding: 8px 12px;
   }
 
-  /* ---------- FILTER GRID (YOU SAID THIS WORKED) ---------- */
-  .filters {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+  .brand-text strong {
+    font-size: 14px;
   }
 
-  /* ---------- PROPERTY CARDS (2 PER ROW, DECONGESTED) ---------- */
+  .brand-text small,
+  .brand-pill {
+    display: none;
+  }
+
+  .nav-phone {
+    display: none;
+  }
+
+  .nav-cta {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  /* HERO: lighter & content-first */
+  .hero {
+    min-height: auto;
+    padding: 16px 0 24px;
+  }
+
+  .hero-copy h1 {
+    font-size: 25px;
+  }
+
+  .hero-copy p {
+    font-size: 14px;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* PROPERTY GRID: single column app cards */
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .card {
-    padding: 10px;
-    border-radius: 18px;
-  }
-
-  .card-media {
-    height: 140px;
-    border-radius: 14px;
-  }
-
-  .card h3 {
-    font-size: 13.5px;
-    line-height: 1.25;
-  }
-
-  .card-sub {
-    font-size: 11.5px;
+    border-radius: 20px;
   }
 
   .card-actions {
-    gap: 8px;
+    flex-direction: column;
   }
 
   .btn-pill {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* MODAL → mobile bottom sheet */
+  .modal {
     width: 100%;
-    font-size: 12px;
-    padding: 8px 0;
-    justify-content: center;
-    border-radius: 999px;
-  }
-}
-  
-  /* ====================================================
-   MOBILE HERO LAYOUT FIX (FORCE VERTICAL CARD)
-   ==================================================== */
-@media (max-width: 640px) {
-
-  /* force hero to stack */
-  .hero-layout,
-  .hero-inner {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
+    max-width: none;
+    border-radius: 20px 20px 0 0;
+    position: fixed;
+    bottom: 0;
+    max-height: 92vh;
   }
 
-  /* stop background column from stealing width */
-  .hero-visual {
-    width: 100% !important;
-    min-height: 240px;
-  }
-
-  /* center the card properly */
-  .hero-copy {
-    width: 100%;
-    max-width: 90%;
-  }
-}
-  /* ====================================================
-   MOBILE HERO BUTTON TEXT SPACING
-   ==================================================== */
-@media (max-width: 640px) {
-
-  .hero-copy .btn-primary,
-  .hero-copy .btn-ghost {
-    padding-left: 22px;
-    padding-right: 18px;
-  }
-
-  .hero-copy .btn-primary i,
-  .hero-copy .btn-ghost i {
-    margin-right: 10px;
-  }
-}
-  /* ====================================================
-   MOBILE CARD BUTTON FIX
-   ==================================================== */
-@media (max-width: 640px) {
-
-  /* simplify View More Details */
-  .btn-pill.info {
-    padding: 8px 0;
-    font-size: 11.5px;
-    gap: 6px;
-    text-align: center;
-  }
-
-  .btn-pill.info i {
-    display: none; /* icon makes it cramped */
+  .modal-layout {
+    grid-template-columns: 1fr;
   }
 }
 
-/* ====================================================
-   MOBILE CARD ACTION ALIGNMENT
-   ==================================================== */
-@media (max-width: 640px) {
-
-  .card-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: auto;
-  }
-
-  .card {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
+.partners-wrap {
+  position: relative;
 }
-  
-  /* ====================================================
-   MOBILE VIEW DETAILS BUTTON POLISH
-   ==================================================== */
-@media (max-width: 640px) {
 
-  .btn-pill:not(.primary) {
-    width: 100%;
-    height: 40px;
-    font-size: 12px;
-    font-weight: 500;
-    justify-content: center;
-    padding: 0;
-  }
+.partner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  cursor: pointer;
+  z-index: 2;
 
-  .btn-pill:not(.primary) i {
-    margin-right: 8px;
-  }
-
-  .btn-pill.primary {
-    width: 100%;
-    height: 42px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-  
-  /* ====================================================
-   MOBILE: CURATED PROPERTIES PILL TEXT ALIGN
-   ==================================================== */
-@media (max-width: 640px) {
 
-  .hero-counter {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .hero-counter strong {
-    margin-left: 6px;
-  }
+.partner-arrow i {
+  font-size: 20px;
+  color: #111;
 }
-  
-  
-  /* ====================================================
-   MOBILE: VIEW MORE DETAILS TEXT TWEAK
-   ==================================================== */
-@media (max-width: 640px) {
 
-  .btn-pill:not(.primary) {
-    font-size: 11px;
-    letter-spacing: 0.02em;
-  }
+.partner-arrow.left {
+  left: -14px;
 }
-  
-  /* ====================================================
-   MOBILE: VIEW DETAILS ICON + TEXT ALIGNMENT
-   ==================================================== */
-@media (max-width: 640px) {
 
-  .btn-pill:not(.primary) {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;              /* tighten icon-text spacing */
-    padding-left: 10px;    /* remove excess side space */
-    padding-right: 10px;
-  }
-
-  .btn-pill:not(.primary) i {
-    margin: 0;            /* kill any inherited margins */
-    font-size: 13px;
-  }
+.partner-arrow.right {
+  right: -14px;
 }
-  
+
+.clear-btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px dashed rgba(55,65,81,.6);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background: rgba(0,0,0,.05);
+}
+
+
+.fab-whatsapp {
+  text-decoration: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fab-whatsapp::after {
+  display: none !important;
+}
+
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+}
+
+
   </style>
 </head>
 
@@ -1764,126 +1661,58 @@
   <header class="glass">
     <div class="container nav">
       <div class="brand">
-        <img src="https://i.ibb.co/QjQq4TJR/download-removebg-preview-removebg-preview.png"
-     class="brand-logo-main"
-     alt="Frontline Homes logo">
+  <a href="index.html" class="brand-link" aria-label="Frontline Homes Home">
+    <img src="https://i.ibb.co/QjQq4TJR/download-removebg-preview-removebg-preview.png"
+         class="brand-logo-main"
+         alt="Frontline Homes logo">
+  </a>
 
-        <div class="brand-text">
-          <strong>Frontline Homes</strong>
-          <small>
-            Bangalore
-            <span class="brand-pill">
-              <i class="ri-shield-check-line"></i>
-              Curated Homes
-            </span>
-          </small>
-        </div>
-      </div>
+  <a href="index.html" class="brand-link brand-text">
+    <strong>Frontline Homes</strong>
+    <small>
+      Bangalore
+      <span class="brand-pill">
+        <i class="ri-shield-check-line"></i>
+        Curated Homes
+      </span>
+    </small>
+  </a>
+</div>
+
 
       <div class="nav-actions">
         <a class="nav-phone" href="tel:+917019285746">
           <i class="ri-phone-fill"></i>
           <span>+91 70192 85746</span>
         </a>
-        <a class="nav-cta" href="#properties">
-          <i class="ri-home-8-line"></i>
-          <span>View Properties</span>
-        </a>
+        <a class="nav-cta" href="index.html">
+          <i class="ri-home-4-line"></i>
+          <span>Home</span>
+  </a>
+
       </div>
     </div>
   </header>
+  
+  <!-- PARTNERS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Our Trusted Builder Partners</h2>
+    <p class="section-subtitle">Tap a builder to filter instantly.</p>
+    <div class="partners-wrap">
+  <button class="partner-arrow left" id="partnerPrev">
+    <i class="ri-arrow-left-s-line"></i>
+  </button>
 
-  <!-- HERO -->
-  <section class="hero">
-    <!-- slideshow background -->
-    <div class="hero-bg-layer">
-      <div class="hero-bg" id="heroBg1"></div>
-      <div class="hero-bg" id="heroBg2"></div>
-      <div class="hero-overlay"></div>
-    </div>
+  <div class="partners-row" id="partnersRow"></div>
 
-    <div class="container">
-      <div class="hero-layout">
-
-  <!-- LEFT: TEXT -->
-  <div class="hero-copy">
-    <div class="hero-highlight">
-      <i class="ri-sparkling-2-line"></i>
-      <span>Trusted homes across Bangalore</span>
-    </div>
-
-    <h1>Your gateway to memorable homes in Bangalore.</h1>
-
-    <p>
-      Discover handpicked apartments and villas, transparent pricing, and guidance from the first phone call to final registration.
-    </p>
-
-    <div class="hero-cta-row">
-      <a href="https://wa.me/917019285746" target="_blank" class="btn-primary">
-        <i class="ri-whatsapp-line"></i>
-        Talk to a Property Expert
-      </a>
-
-      <a href="#how-it-works" class="btn-ghost">
-        <i class="ri-route-line"></i>
-        See how the process works
-      </a>
-    </div>
-
-    <div class="hero-counter">
-      <span>Currently showcasing</span>
-      <strong id="heroPropertyCount">Curated properties</strong>
-    </div>
-  </div>
-
-  <!-- RIGHT: DESKTOP IMAGE (flip card) -->
-<div class="hero-side-image">
-  <div class="hero-logo-card">
-    <!-- front: logo -->
-    <div class="hero-logo-face hero-logo-front">
-      <img
-        src="https://i.ibb.co/4wmp7PQP/Logo-2.jpg"
-        alt="Frontline Homes brand visual"
-      />
-    </div>
-
-    <!-- back: blurred-glass text side -->
-    <div class="hero-logo-face hero-logo-back">
-      <div>
-        <p>
-          <strong>Frontline Homes</strong> is a premier real estate agency
-          recently founded by a passionate and experienced realtor in Bangalore.
-        </p>
-        <p>
-          Our vision is to help individuals and families find their dream homes,
-          making buying and selling properties in Bangalore a seamless and
-          delightful experience.
-        </p>
-      </div>
-    </div>
-  </div>
+  <button class="partner-arrow right" id="partnerNext">
+    <i class="ri-arrow-right-s-line"></i>
+  </button>
 </div>
+  </div>
+</section>
 
-
-</div>
-      </div>
-
-      <div class="hero-metrics">
-        <div class="hero-metric">
-          <strong>100+ families</strong>
-          <span>guided across Bangalore</span>
-        </div>
-        <div class="hero-metric">
-          <strong>Zero brokerage*</strong>
-          <span>on select projects & launches</span>
-        </div>
-        <div class="hero-metric">
-          <strong>End-to-end support</strong>
-          <span>from discovery to keys in hand</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- AVAILABLE PROPERTIES -->
   <section class="section" id="properties">
@@ -1918,140 +1747,11 @@
       </div>
 
       <div class="grid" id="grid"></div>
-      <div style="text-align:center;margin-top:28px;" id="viewAllContainer">
-        <button type="button" id="viewAllBtn" class="btn-primary">View all properties →</button>
-      </div>
+      
     </div>
   </section>
 
-  <!-- WHY FRONTLINE HOMES -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">Why Frontline Homes</h2>
-          <p class="section-subtitle">
-            Not just listings. We curate properties, verify details, and walk with you through every decision.
-          </p>
-        </div>
-        <div class="section-pill">
-          <i class="ri-shield-star-line"></i>
-          Trust, clarity & access
-        </div>
-      </div>
-
-      <div class="info-grid">
-        <div class="info-card glass">
-          <div class="info-icon">
-            <i class="ri-user-heart-line"></i>
-          </div>
-          <div class="info-body">
-            <h3>Customer-first guidance</h3>
-            <p>
-              We begin with your life stage, commute, and budget—not just inventory. Every shortlist is built around your reality.
-            </p>
-          </div>
-        </div>
-
-        <div class="info-card glass">
-          <div class="info-icon">
-            <i class="ri-shield-check-line"></i>
-          </div>
-          <div class="info-body">
-            <h3>Verified builders & owners</h3>
-            <p>
-              Projects and owners are screened for documentation, RERA status, and basic legal hygiene before we share them with you.
-            </p>
-          </div>
-        </div>
-
-        <div class="info-card glass">
-          <div class="info-icon">
-            <i class="ri-hand-heart-line"></i>
-          </div>
-          <div class="info-body">
-            <h3>End-to-end support</h3>
-            <p>
-              From the first viewing to loan coordination and registration day, you have a single point of contact from our team.
-            </p>
-          </div>
-        </div>
-
-        <div class="info-card glass">
-          <div class="info-icon">
-            <i class="ri-map-pin-2-line"></i>
-          </div>
-          <div class="info-body">
-            <h3>Local Bangalore insights</h3>
-            <p>
-              Understand micro-markets, upcoming infra, and realistic resale or rental potential before you decide.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="section" id="how-it-works">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">How It Works</h2>
-          <p class="section-subtitle">
-            A simple, transparent flow so you always know what’s next.
-          </p>
-        </div>
-        <div class="section-pill">
-          <i class="ri-compass-3-line"></i>
-          From call to keys
-        </div>
-      </div>
-
-      <div class="steps-grid">
-        <div class="step-card glass">
-          <div class="step-number">1</div>
-          <div class="step-body">
-            <h3>Understand your requirement</h3>
-            <p>
-              A quick discovery call to understand location preferences, budget, timeline, family needs, and preferred builders or projects.
-            </p>
-          </div>
-        </div>
-
-        <div class="step-card glass">
-          <div class="step-number">2</div>
-          <div class="step-body">
-            <h3>Shortlist the right homes</h3>
-            <p>
-              We curate options from our internal database and partner network and share only those that match your criteria and paperwork comfort.
-            </p>
-          </div>
-        </div>
-
-        <div class="step-card glass">
-          <div class="step-number">3</div>
-          <div class="step-body">
-            <h3>Site visits & evaluation</h3>
-            <p>
-              We schedule visits, help you compare plans and amenities, and offer practical input on layouts, light, noise, and resale potential.
-            </p>
-          </div>
-        </div>
-
-        <div class="step-card glass">
-          <div class="step-number">4</div>
-          <div class="step-body">
-            <h3>Closure & documentation</h3>
-            <p>
-              Support on negotiation, booking, loan coordination, legal review, and registration—until you have the keys in your hand.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  
   <!-- MODAL: PROPERTY DETAILS -->
   <div class="modal-backdrop" id="propertyModalBackdrop">
     <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -2145,44 +1845,18 @@
   </footer>
 
   <script>
-    /* ===== HERO CAROUSEL (background) ===== */
-    const heroImages = [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1512914890250-353c97c9e7e2?auto=format&fit=crop&w=1600&q=80"
-    ];
+    
+    const BUILDER_LOGOS = {
+  "Bhartiya City Developers":"https://i.ibb.co/vJb4NWZ/httpsi-ibb-co-Fw-TW4jp-Screenshot-from-2023-11-08-01-28-28-pngmon-2.png",
+  "Spectra":"https://i.ibb.co/3FhDzzJ/httpsi-ibb-co-Fw-TW4jp-Screenshot-from-2023-11-08-01-28-28-pngmon-3.png",
+  "Sobha":"https://i.ibb.co/MBymwpy/httpsi-ibb-co-Fw-TW4jp-Screenshot-from-2023-11-08-01-28-28-pngmon-4.png",
+  "Prestige":"https://i.ibb.co/3cspjsJ/Prestige-Group.png",
+  "Brigade":"https://i.ibb.co/P6t6fqH/images-1.png",
+  "Godrej":"https://i.ibb.co/xFfrQHw/images-1.png",
+  "Total Environment":"https://i.ibb.co/72NgwMj/Untitled-design-1.png"
+};
 
-    let hIndex = 0;
-    const heroBg1 = document.getElementById("heroBg1");
-    const heroBg2 = document.getElementById("heroBg2");
-    let activeBg = 1;
-
-    function setHeroImage(el, url) {
-      el.style.backgroundImage = `url(${url})`;
-    }
-
-    function rotateHeroBg() {
-      const nextUrl = heroImages[hIndex];
-      hIndex = (hIndex + 1) % heroImages.length;
-
-      if (activeBg === 1) {
-        setHeroImage(heroBg2, nextUrl);
-        heroBg2.classList.add("active");
-        heroBg1.classList.remove("active");
-        activeBg = 2;
-      } else {
-        setHeroImage(heroBg1, nextUrl);
-        heroBg1.classList.add("active");
-        heroBg2.classList.remove("active");
-        activeBg = 1;
-      }
-    }
-
-    setHeroImage(heroBg1, heroImages[0]);
-    heroBg1.classList.add("active");
-    hIndex = 1;
-    setInterval(rotateHeroBg, 6000);
-
+    
     // --- Google Sheets Logic ---
     const SHEET_URL = "https://script.google.com/macros/s/AKfycbyjZexXr0y3PqDoGB0AwF-ecID7M9NwLsmf9u6--Jh1bNNSjtQy8sNhLB_8id-GJ8PAUw/exec";
 
@@ -2227,14 +1901,7 @@
     const locF = document.getElementById("locality");
     const confF = document.getElementById("config");
     const builderF = document.getElementById("builder");
-    const heroPropertyCountEl = document.getElementById("heroPropertyCount");
-
-    function normalize(value) {
-  return (value || "")
-    .toString()
-    .trim()
-    .toLowerCase();
-}
+    
 
 function fillSelect(sel, key, label) {
   const rawValues = properties
@@ -2265,7 +1932,7 @@ function fillSelect(sel, key, label) {
       fillSelect(builderF, "Builder", "builders");
 
 
-      heroPropertyCountEl.textContent = `${properties.length || 0} curated properties`;
+      
     }
 
     function normalize(v) {
@@ -2281,9 +1948,65 @@ function matchesFilters(p) {
   );
 }
 
+function buildPartners() {
+  const partnersRow = document.getElementById("partnersRow");
+  const partnerPrev = document.getElementById("partnerPrev");
+  const partnerNext = document.getElementById("partnerNext");
+
+  partnersRow.innerHTML = ""; // ✅ prevent duplicates
+
+  Object.entries(BUILDER_LOGOS).forEach(([name, logo]) => {
+    const d = document.createElement("div");
+    d.className = "partner-logo";
+    d.innerHTML = `
+      <img src="${logo}" alt="${name}">
+      <span class="partner-name">${name}</span>
+    `;
+
+    d.onclick = () => {
+      builderF.value = normalize(name); // ✅ IMPORTANT FIX
+      document
+        .querySelectorAll(".partner-logo")
+        .forEach(l => l.classList.remove("active"));
+      d.classList.add("active");
+      render();
+      document
+        .getElementById("properties")
+        .scrollIntoView({ behavior: "smooth" });
+    };
+
+    partnersRow.appendChild(d);
+  });
+
+  function updatePartnerArrows() {
+    partnerPrev.style.display =
+      partnersRow.scrollLeft <= 0 ? "none" : "flex";
+
+    const atEnd =
+      partnersRow.scrollLeft + partnersRow.clientWidth >=
+      partnersRow.scrollWidth - 2;
+
+    partnerNext.style.display = atEnd ? "none" : "flex";
+  }
+
+  partnerPrev.onclick = () => {
+    partnersRow.scrollBy({ left: -300, behavior: "smooth" });
+    setTimeout(updatePartnerArrows, 300);
+  };
+
+  partnerNext.onclick = () => {
+    partnersRow.scrollBy({ left: 300, behavior: "smooth" });
+    setTimeout(updatePartnerArrows, 300);
+  };
+
+  partnersRow.addEventListener("scroll", updatePartnerArrows);
+
+  setTimeout(updatePartnerArrows, 100); // ✅ after logos render
+}
+
+
     // Render cards
-    function render(limit) {
-      const viewAllContainer = document.getElementById("viewAllContainer");
+    function render() {
       const filtered = properties.filter(matchesFilters);
 
       console.log("Filtered:", filtered.length);
@@ -2292,11 +2015,11 @@ function matchesFilters(p) {
 
       if (!filtered.length) {
         grid.innerHTML = "<p style='font-size:13px;color:var(--muted);'>No matching properties found.</p>";
-        viewAllContainer.style.display = "none";
         return;
       }
-
-      const toShow = limit ? filtered.slice(0, limit) : filtered;
+      
+      
+      const toShow = filtered;
 
       toShow.forEach(p => {
         const photos = parsePhotoArray(p.Photos);
@@ -2309,8 +2032,10 @@ function matchesFilters(p) {
               <img
                 src="${cover}"
                 alt="Property image for ${p.Property}"
-                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1502672260266-1c1ef2d93688';"
+                loading="lazy"
+                decoding="async"
               >
+
             </div>
             <div class="card-body">
               <h3>${p.Property}</h3>
@@ -2330,17 +2055,16 @@ function matchesFilters(p) {
         `;
       });
 
-      viewAllContainer.style.display = limit && filtered.length > limit ? "block" : "none";
+      
     }
 
-    document.getElementById("viewAllBtn").addEventListener("click", () => {
-      window.location.href = "properties.html";
-    });
+    
 
-    typeF.addEventListener("change", () => render(3));
-    locF.addEventListener("change", () => render(3));
-    confF.addEventListener("change", () => render(3));
-    builderF.addEventListener("change", () => render(3));
+    typeF.addEventListener("change", render);
+    locF.addEventListener("change", render);
+    confF.addEventListener("change", render);
+    builderF.addEventListener("change", render);
+
 
     /* ===== MODAL & CAROUSEL LOGIC ===== */
     let currentPropertyIndex = -1;
@@ -2468,24 +2192,44 @@ function matchesFilters(p) {
     });
 
     /* ===== FETCH DATA FROM GOOGLE SHEETS ===== */
-    grid.innerHTML = "<p style='font-size:13px;color:var(--muted);'>Loading curated properties...</p>";
-    fetch(SHEET_URL)
-      .then(r => r.json())
-      .then(data => {
-        if (Array.isArray(data) && data.length > 0) {
-          properties = data;
-          initFiltersAndCounts();
-          render(3);
-        } else {
-          grid.innerHTML =
-            "<p style='font-size:13px;color:#9ca3af;'>Sheet connected, but no property data returned yet.</p>";
-        }
-      })
-      .catch(e => {
-        console.error("Error connecting to Google Sheet Web App:", e);
-        grid.innerHTML =
-          "<p style='font-size:13px;color:#9ca3af;'>Could not load properties at this time. Please try again later.</p>";
-      });
+    
+
+grid.innerHTML =
+  "<p style='font-size:13px;color:var(--muted);'>Loading curated properties...</p>";
+
+const cached = sessionStorage.getItem("properties");
+
+if (cached) {
+  properties = JSON.parse(cached);
+  initFiltersAndCounts();
+  buildPartners();   // ✅ ADD THIS LINE
+  render();
+} else {
+  fetch(SHEET_URL)
+    .then(r => r.json())
+    .then(data => {
+      properties = data;
+      sessionStorage.setItem("properties", JSON.stringify(data));
+      initFiltersAndCounts();
+      buildPartners();   // ✅ ADD THIS LINE
+      render();
+    })
+    .catch(e => {
+      console.error("Error connecting to Google Sheet Web App:", e);
+      grid.innerHTML =
+        "<p style='font-size:13px;color:#9ca3af;'>Could not load properties at this time. Please try again later.</p>";
+    });
+}
+
+
   </script>
+  
+  <a href="https://wa.me/917019285746"
+   class="fab-whatsapp"
+   aria-label="Chat on WhatsApp">
+  <i class="ri-whatsapp-line"></i>
+</a>
+
+  
 </body>
 </html>
