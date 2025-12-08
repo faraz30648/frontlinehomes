@@ -93,9 +93,26 @@
     }
 
     .brand-text strong {
-      font-size: 18px;
-      letter-spacing: 0.03em;
-    }
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(
+      135deg,
+      #1f2937,
+    var(--brand-gold)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-text small {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
 
     .brand-text small {
       display: inline-flex;
@@ -1103,6 +1120,13 @@
         align-items: flex-start;
       }
     }
+  
+    @media (hover: hover) {
+  .brand:hover .brand-logo-main {
+    transform: translateY(-1px) scale(1.03);
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
+  }
+}
 
     @media (max-width: 640px) {
       .nav {
@@ -1386,8 +1410,350 @@
   }
 }
 
+  @media (max-width: 640px) {
 
+  /* HERO TEXT → CARD STYLE */
+  .hero-copy {
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
+    padding: 18px 16px 20px;
+    border-radius: 22px;
+
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.35),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  }
+
+  .hero-copy h1 {
+    font-size: 24px;
+    line-height: 1.15;
+  }
+
+  .hero-copy p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+}
+  
+  
+  
+  @media (max-width: 640px) {
+
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .select-wrap select {
+    width: 100%;
+    min-width: 0;
+  }
+}
+  
+  @media (max-width: 640px) {
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .card-media {
+    height: 150px;
+  }
+
+  .card h3 {
+    font-size: 14px;
+  }
+
+  .card-sub {
+    font-size: 12px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-pill {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+}
+  
+  /* ====================================================
+   MOBILE — HERO CARD + BUTTONS + 2-COLUMN CARDS
+   (DESKTOP SAFE)
+   ==================================================== */
+@media (max-width: 640px) {
+
+  /* ---------- HERO CARD ---------- */
+  .hero-copy {
+    max-width: 92%;
+    margin: 0 auto;
+
+    background: linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.9),
+      rgba(15, 23, 42, 0.85)
+    );
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    padding: 16px 16px 18px;
+    border-radius: 20px;
+
+    box-shadow:
+      0 18px 34px rgba(0, 0, 0, 0.35),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .hero-copy h1 {
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.2px;
+  }
+
+  .hero-copy p {
+    margin-top: 10px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    opacity: 0.9;
+  }
+
+  .hero-badge {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  /* ---------- HERO BUTTONS ---------- */
+  .hero-cta-row {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .hero-cta-row .btn-primary {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 14px;
+    border-radius: 999px;
+  }
+
+  .hero-cta-row .btn-ghost {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 13px;
+    border-radius: 999px;
+    opacity: 0.95;
+  }
+
+  .hero-counter {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  /* ---------- FILTER GRID (YOU SAID THIS WORKED) ---------- */
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* ---------- PROPERTY CARDS (2 PER ROW, DECONGESTED) ---------- */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .card-media {
+    height: 140px;
+    border-radius: 14px;
+  }
+
+  .card h3 {
+    font-size: 13.5px;
+    line-height: 1.25;
+  }
+
+  .card-sub {
+    font-size: 11.5px;
+  }
+
+  .card-actions {
+    gap: 8px;
+  }
+
+  .btn-pill {
+    width: 100%;
+    font-size: 12px;
+    padding: 8px 0;
+    justify-content: center;
+    border-radius: 999px;
+  }
+}
+  
+  /* ====================================================
+   MOBILE HERO LAYOUT FIX (FORCE VERTICAL CARD)
+   ==================================================== */
+@media (max-width: 640px) {
+
+  /* force hero to stack */
+  .hero-layout,
+  .hero-inner {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* stop background column from stealing width */
+  .hero-visual {
+    width: 100% !important;
+    min-height: 240px;
+  }
+
+  /* center the card properly */
+  .hero-copy {
+    width: 100%;
+    max-width: 90%;
+  }
+}
+  /* ====================================================
+   MOBILE HERO BUTTON TEXT SPACING
+   ==================================================== */
+@media (max-width: 640px) {
+
+  .hero-copy .btn-primary,
+  .hero-copy .btn-ghost {
+    padding-left: 22px;
+    padding-right: 18px;
+  }
+
+  .hero-copy .btn-primary i,
+  .hero-copy .btn-ghost i {
+    margin-right: 10px;
+  }
+}
+  /* ====================================================
+   MOBILE CARD BUTTON FIX
+   ==================================================== */
+@media (max-width: 640px) {
+
+  /* simplify View More Details */
+  .btn-pill.info {
+    padding: 8px 0;
+    font-size: 11.5px;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .btn-pill.info i {
+    display: none; /* icon makes it cramped */
+  }
+}
+
+/* ====================================================
+   MOBILE CARD ACTION ALIGNMENT
+   ==================================================== */
+@media (max-width: 640px) {
+
+  .card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+}
+  
+  /* ====================================================
+   MOBILE VIEW DETAILS BUTTON POLISH
+   ==================================================== */
+@media (max-width: 640px) {
+
+  .btn-pill:not(.primary) {
+    width: 100%;
+    height: 40px;
+    font-size: 12px;
+    font-weight: 500;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .btn-pill:not(.primary) i {
+    margin-right: 8px;
+  }
+
+  .btn-pill.primary {
+    width: 100%;
+    height: 42px;
+  }
+}
+  
+  /* ====================================================
+   MOBILE: CURATED PROPERTIES PILL TEXT ALIGN
+   ==================================================== */
+@media (max-width: 640px) {
+
+  .hero-counter {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-counter strong {
+    margin-left: 6px;
+  }
+}
+  
+  
+  /* ====================================================
+   MOBILE: VIEW MORE DETAILS TEXT TWEAK
+   ==================================================== */
+@media (max-width: 640px) {
+
+  .btn-pill:not(.primary) {
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+}
+  
+  /* ====================================================
+   MOBILE: VIEW DETAILS ICON + TEXT ALIGNMENT
+   ==================================================== */
+@media (max-width: 640px) {
+
+  .btn-pill:not(.primary) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;              /* tighten icon-text spacing */
+    padding-left: 10px;    /* remove excess side space */
+    padding-right: 10px;
+  }
+
+  .btn-pill:not(.primary) i {
+    margin: 0;            /* kill any inherited margins */
+    font-size: 13px;
+  }
+}
+  
   </style>
 </head>
 
