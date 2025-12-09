@@ -1168,6 +1168,7 @@
       }
     }
 
+    
     .glass {
       background: var(--glass);
       backdrop-filter: blur(18px) saturate(140%);
@@ -1526,6 +1527,23 @@
 
 .fab-whatsapp::after {
   display: none !important;
+}
+  
+  /* ✅ FINAL OVERRIDE — MOBILE HERO FIX */
+@media (max-width: 640px) {
+  .hero-layout {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  .hero-side-image {
+    display: none !important;
+  }
+
+  .hero-copy {
+    max-width: 100% !important;
+  }
 }
 
 
