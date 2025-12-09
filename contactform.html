@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Frontline Homes Bangalore</title> <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" /> <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+      :root {
+        --brand-gold: #d4af37;
+        --brand-gold-strong: #b8962e;
+        --brand-gold-soft: rgba(212, 175, 55, .25);
+        --glass: rgba(255, 255, 255, .35);
+        --border: rgba(255, 255, 255, .38);
+        --text: #1f2933;
+        --muted: #4b5563;
+      }
+
+      * {
+        box-sizing: border-box
+      }
+
+      html,
+      body {
+        margin: 0;
+        font-family: Manrope, system-ui, sans-serif;
+        color: var(--text);
+        background: transparent;
+        min-height: 100%;
+      }
+
+      /* ===== GLOBAL BACKGROUND ===== */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -20px;
+        background-image: url("https://images.unsplash.com/photo-1600585154340-be6161b89a0c");
+        background-size: cover;
+        background-position: center;
+        filter: blur(22px) brightness(.75);
+        transform: scale(1.15);
+        z-index: -2;
+      }
+
+      /* CONTAINER */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px 20px 48px;
+      }
+
+      /* GLASS */
+      .glass {
+        background: var(--glass);
+        backdrop-filter: blur(18px) saturate(140%);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+
+      /* ================= HEADER ================= */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: rgba(255, 255, 255, .6);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 0, 0, .05);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand-logo-main {
+        height: 44px;
+        transform: scale(1.4);
+        transform-origin: left center;
+      }
+
+      .brand-text strong {
+        font-size: 18px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #1f2937, var(--brand-gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .brand-text small {
+        font-size: 12px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .brand-pill {
+        border: 1px solid rgba(55, 65, 81, .9);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 10px;
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+      }
+
+      .nav-phone,
+      .nav-cta {
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 13px;
+        border: 1px solid rgba(55, 65, 81, .9);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-cta {
+        background: linear-gradient(135deg, var(--brand-gold), var(--brand-gold-strong));
+        border: none;
+        font-weight: 600;
+        color: #3b2f00;
+      }
+
+      /* ================= CONTACT SECTION ================= */
+      .section {
+        padding: 40px 0;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 20px;
+        margin-bottom: 24px;
+      }
+
+      .section-title {
+        font-size: 26px;
+        margin: 0;
+      }
+
+      .section-subtitle {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      .section-pill {
+        border: 1px solid rgba(55, 65, 81, .9);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* CONTACT LAYOUT */
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 1.2fr .8fr;
+        gap: 32px;
+        padding: 28px;
+      }
+
+      /* FORM */
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .form-group label {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 4px;
+        display: block;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(55, 65, 81, .9);
+        font-family: inherit;
+        font-size: 14px;
+        background: rgba(255, 255, 255, .9);
+      }
+
+      textarea {
+        resize: vertical
+      }
+
+      .form-note {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      .btn-primary {
+        border-radius: 999px;
+        padding: 12px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        color: #3b2f00;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* CONTACT INFO */
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .contact-card {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        background: rgba(255, 255, 255, .85);
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, .6);
+      }
+
+      .contact-card i {
+        font-size: 22px;
+        color: var(--brand-gold);
+      }
+
+      .contact-card strong {
+        font-size: 14px;
+      }
+
+      .contact-card p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 4px 0 0;
+      }
+
+      /* ================= FOOTER ================= */
+      footer .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        font-size: 12px;
+        padding: 18px;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 8px;
+      }
+
+      .footer-icon-link {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid rgba(55, 65, 81, .9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--muted);
+      }
+
+      /* WHATSAPP FAB */
+      .fab-whatsapp {
+        position: fixed;
+        bottom: 18px;
+        right: 18px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: #fff;
+        font-size: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 16px 36px rgba(34, 197, 94, .45);
+        z-index: 60;
+        text-decoration: none;
+      }
+
+      /* MOBILE */
+      @media(max-width:640px) {
+        .nav {
+          flex-direction: row
+        }
+
+        .brand-text small {
+          display: none
+        }
+
+        .contact-layout {
+          grid-template-columns: 1fr;
+          padding: 20px
+        }
+
+        footer .footer-inner {
+          flex-direction: column;
+          align-items: flex-start
+        }
+      }
+
+      /* ===== MOBILE HEADER FIX ===== */
+      @media (max-width: 640px) {
+        .nav {
+          flex-wrap: nowrap;
+          gap: 8px;
+        }
+
+        .brand {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .brand-text strong {
+          font-size: 14px;
+          line-height: 1.1;
+        }
+
+        .brand-text small {
+          display: none;
+        }
+
+        .nav-actions {
+          gap: 6px;
+        }
+
+        .nav-phone {
+          padding: 6px 10px;
+          font-size: 12px;
+        }
+
+        .nav-phone span {
+          display: none;
+          /* icon-only on mobile */
+        }
+
+        .nav-cta {
+          padding: 6px 12px;
+          font-size: 12px;
+          white-space: nowrap;
+        }
+      }
+
+      /* ===== MOBILE CONTACT BADGES ===== */
+      .contact-badges {
+        display: none;
+      }
+
+      @media (max-width: 640px) {
+        .contact-info {
+          align-items: center;
+        }
+
+        .contact-badges {
+          display: flex;
+          gap: 12px;
+          justify-content: space-between;
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .contact-badge {
+          flex: 1;
+          padding: 10px 8px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, .9);
+          border: 1px solid rgba(55, 65, 81, .8);
+          text-decoration: none;
+          font-size: 12px;
+          color: var(--text);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+        }
+
+        .contact-badge i {
+          font-size: 14px;
+          color: var(--brand-gold);
+        }
+
+        /* hide desktop cards on mobile */
+        .contact-card {
+          display: none;
+        }
+      }
+
+      .brand {
+        text-decoration: none;
+        color: inherit;
+      }
+      
+      /* ===== MOBILE TITLE FIX ===== */
+     @media (max-width: 640px) {
+      .section-title {
+      font-size: 22px;
+      line-height: 1.2;
+      white-space: nowrap;
+  }
+}
+
+
+     @media (max-width: 640px) {
+      .section-pill {
+      font-size: 10px;
+      padding: 6px 10px;
+      white-space: nowrap;
+  }
+}
+
+      
+    </style>
+  </head>
+
+  <body> <!-- HEADER -->
+    <header>
+      <div class="container nav"> <a href="index.html" class="brand"> <img src="https://i.ibb.co/QjQq4TJR/download-removebg-preview-removebg-preview.png" class="brand-logo-main" alt="Frontline Homes logo">
+          <div class="brand-text"> <strong>Frontline Homes</strong> <small> Bangalore <span class="brand-pill"> <i class="ri-shield-check-line"></i> Curated </span> </small> </div>
+        </a>
+        <div class="nav-actions"> <a href="index.html" class="nav-phone"> <i class="ri-home-4-line"></i> <span>Home</span> </a> </div>
+    </header> <!-- CONTACT -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Contact Frontline Homes</h2>
+            <p class="section-subtitle">Tell us what you’re looking for — we’ll help you every step.</p>
+          </div>
+          <div class="section-pill">
+           <i class="ri-map-pin-2-line"></i>
+            Bangalore
+    </div>
+
+        </div>
+        <div class="contact-layout glass">
+          <form class="contact-form">
+            <div class="form-group"> <label>Full Name</label> <input required placeholder="Your name" /> </div>
+            <div class="form-group"> <label>Phone</label> <input required placeholder="+91 XXXXX XXXXX" /> </div>
+            <div class="form-group"> <label>Email (optional)</label> <input placeholder="you@email.com" /> </div>
+            <div class="form-group"> <label>Enquiry Type</label> <select required>
+                <option value="">Select one</option>
+                <option>Buying a property</option>
+                <option>Selling a property</option>
+                <option>Renting / Leasing</option>
+                <option>Site visit</option>
+                <option>General enquiry</option>
+              </select> </div>
+            <div class="form-group"> <label>Your requirement</label> <textarea rows="4" placeholder="Location, budget, configuration…"></textarea> </div> <button class="btn-primary"><i class="ri-send-plane-line"></i>Send enquiry</button>
+            <p class="form-note">No spam. We usually respond within 24 hours.</p>
+          </form>
+          <div class="contact-info">
+            <div class="contact-badges"> <a href="tel:+917019285746" class="contact-badge"> <i class="ri-phone-fill"></i> Call </a> <a href="https://wa.me/917019285746" class="contact-badge"> <i class="ri-whatsapp-line"></i> WhatsApp </a> <a href="mailto:frontlinehomesblr@gmail.com" class="contact-badge"> <i class="ri-mail-line"></i> Email </a> </div>
+          </div>
+        </div>
+      </div>
+    </section> <!-- FOOTER -->
+    <footer>
+      <div class="container footer-inner glass">
+        <div class="footer-social"> <a class="footer-icon-link" href="mailto:frontlinehomesblr@gmail.com"><i class="ri-mail-line"></i></a> <a class="footer-icon-link" href="https://wa.me/917019285746"><i class="ri-whatsapp-line"></i></a> </div> <span>© 2025 Frontline Homes · Bangalore</span>
+      </div>
+    </footer> <!-- FAB --> <a href="https://wa.me/917019285746" class="fab-whatsapp"><i class="ri-whatsapp-line"></i></a>
+  </body>
+
+</html>
