@@ -1893,11 +1893,14 @@
                 <i class="ri-external-link-line"></i>
                 View full listing / brochure
               </a>
-              <a href="https://wa.me/917019285746?text=Hi%2C%20I%27m%20interested%20in%20a%20property%20from%20Frontline%20Homes"
-                 target="_blank" class="btn-ghost-pill">
-                <i class="ri-whatsapp-line"></i>
-                Share this property on WhatsApp
-              </a>
+              <a href="#"
+   id="modalWhatsappBtn"
+   target="_blank"
+   class="btn-ghost-pill">
+  <i class="ri-whatsapp-line"></i>
+  Share this property on WhatsApp
+</a>
+
               <a href="https://wa.me/917019285746?text=Hi%2C%20I’d%20like%20to%20schedule%20a%20site%20visit"
                  target="_blank"
                  class="btn-ghost-pill schedule">
@@ -1978,6 +1981,23 @@
     heroBg1.classList.add("active");
     hIndex = 1;
     setInterval(rotateHeroBg, 6000);
+
+function buildWhatsappMessage(p) {
+  return encodeURIComponent(
+`Hi I'm interested in this property listed on Frontline Homes.
+
+Property: ${p.Property || "N/A"}
+Configuration: ${p.Configuration || "N/A"}
+Builder: ${p.Builder || "N/A"}
+Location: ${p.Locality || "N/A"}
+Built: ${p.Built || "N/A"}
+Carpet: ${p.Carpet || "N/A"}
+
+Please share more details.`
+  );
+}
+
+
 
     // --- Google Sheets Logic ---
     const SHEET_URL = "https://script.google.com/macros/s/AKfycbyjZexXr0y3PqDoGB0AwF-ecID7M9NwLsmf9u6--Jh1bNNSjtQy8sNhLB_8id-GJ8PAUw/exec";
@@ -2113,9 +2133,12 @@ function matchesFilters(p) {
                   <i class="ri-information-line"></i> View more details
                 </button>
 
-                <a href="https://wa.me/917019285746?text=Hi, I'm interested in ${p.Property}" target="_blank" class="btn-pill primary">
-                  <i class="ri-whatsapp-line"></i> Enquire
-                </a>
+                <a href="https://wa.me/917019285746?text=${buildWhatsappMessage(p)}"
+   target="_blank"
+   class="btn-pill primary">
+  <i class="ri-whatsapp-line"></i> Enquire
+</a>
+
               </div>
             </div>
           </div>
@@ -2197,6 +2220,10 @@ function matchesFilters(p) {
     function openPropertyModal(index) {
       const p = properties[index];
       if (!p) return;
+      
+      document.getElementById("modalWhatsappBtn").href =
+  "https://wa.me/917019285746?text=" + buildWhatsappMessage(p);
+
 
       modalTitleEl.textContent = p.Property || "Property details";
       modalSubtitleEl.textContent = `${p.Locality || ""} · ${p.Configuration || ""}`;
