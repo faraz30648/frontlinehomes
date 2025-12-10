@@ -437,6 +437,183 @@
   }
 }
 
+      /* ================= DESKTOP ENHANCEMENTS ONLY ================= */
+@media (min-width: 1024px) {
+
+  /* Reduce “empty” feeling */
+  .section {
+    padding: 56px 0;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  /* Improve title hierarchy */
+  .section-title {
+    font-size: 32px;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+    max-width: 520px;
+  }
+
+  /* Make pill feel balanced on wide screens */
+  .section-pill {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+
+  /* Contact layout refinement */
+  .contact-layout {
+    grid-template-columns: 1.3fr 0.7fr;
+    padding: 40px;
+  }
+
+  /* Form spacing & presence */
+  .contact-form {
+    gap: 18px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+
+  /* Primary button prominence */
+  .btn-primary {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .btn-primary i {
+    font-size: 18px;
+  }
+
+  /* CONTACT INFO ICON SCALE (desktop only) */
+  .contact-card i {
+    font-size: 26px;
+  }
+
+  .contact-card strong {
+    font-size: 15px;
+  }
+
+  .contact-card p {
+    font-size: 13px;
+  }
+
+  /* Footer balance */
+  footer .footer-inner {
+    padding: 22px 26px;
+    font-size: 13px;
+  }
+
+  .footer-icon-link {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+      /* ================= REMOVE WHATSAPP FAB ON DESKTOP ONLY ================= */
+@media (min-width: 1024px) {
+  .fab-whatsapp {
+    display: none !important;
+  }
+}
+
+      /* ================= DESKTOP ONLY ENHANCEMENTS ================= */
+@media (min-width: 1024px) {
+
+  /* Explicitly hide mobile-only elements */
+  
+    .contact-card {
+    transition: 
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      border-color 0.35s ease,
+      background 0.35s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.88)
+    );
+    border-color: rgba(212, 175, 55, 0.45);
+  }
+
+  .contact-card:hover i {
+    transform: scale(1.1);
+    color: var(--brand-gold);
+  }
+
+  .contact-card i {
+    transition: transform 0.3s ease, color 0.3s ease;
+
+  .contact-badges {
+    display: none;
+  }
+
+  /* Right column content */
+  .contact-info.desktop-only {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-left: 8px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .contact-card i {
+    font-size: 28px;
+    margin-top: 2px;
+  }
+
+  .contact-card strong {
+    font-size: 15px;
+  }
+
+  .contact-card p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* Footer icons – desktop scale */
+  .footer-icon-link {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .footer-social {
+    gap: 12px;
+  }
+}
+
+      
       
     </style>
   </head>
@@ -477,8 +654,34 @@
             <div class="form-group"> <label>Your requirement</label> <textarea rows="4" placeholder="Location, budget, configuration…"></textarea> </div> <button class="btn-primary"><i class="ri-send-plane-line"></i>Send enquiry</button>
             <p class="form-note">No spam. We usually respond within 24 hours.</p>
           </form>
-          <div class="contact-info">
-            <div class="contact-badges"> <a href="tel:+917019285746" class="contact-badge"> <i class="ri-phone-fill"></i> Call </a> <a href="https://wa.me/917019285746" class="contact-badge"> <i class="ri-whatsapp-line"></i> WhatsApp </a> <a href="mailto:frontlinehomesblr@gmail.com" class="contact-badge"> <i class="ri-mail-line"></i> Email </a> </div>
+          <div class="contact-info desktop-only">
+  
+  <div class="contact-card">
+    <i class="ri-shield-check-line"></i>
+    <div>
+      <strong>Curated Properties</strong>
+      <p>No mass listings. Only verified homes that make sense.</p>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <i class="ri-map-pin-2-line"></i>
+    <div>
+      <strong>Bangalore Local Expertise</strong>
+      <p>Layouts, builders, pricing — we know the details.</p>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <i class="ri-home-heart-line"></i>
+    <div>
+      <strong>Site Visit Assistance</strong>
+      <p>We coordinate visits and guide you end-to-end.</p>
+    </div>
+  </div>
+
+</div>
+
           </div>
         </div>
       </div>
@@ -487,7 +690,7 @@
       <div class="container footer-inner glass">
         <div class="footer-social"> <a class="footer-icon-link" href="mailto:frontlinehomesblr@gmail.com"><i class="ri-mail-line"></i></a> <a class="footer-icon-link" href="https://wa.me/917019285746"><i class="ri-whatsapp-line"></i></a> </div> <span>© 2025 Frontline Homes · Bangalore</span>
       </div>
-    </footer> <!-- FAB --> <a href="https://wa.me/917019285746" class="fab-whatsapp"><i class="ri-whatsapp-line"></i></a>
+      </footer> <!-- FAB --> <a href="https://wa.me/917019285746" class="fab-whatsapp"><i class="ri-whatsapp-line"></i></a>
   </body>
 
 </html>
